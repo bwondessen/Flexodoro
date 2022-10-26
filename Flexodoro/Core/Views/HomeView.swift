@@ -10,46 +10,51 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var vm = HomeViewModel()
     
-    @State private var timeSelected: Double = 60
+    @State private var focusTime: Double = 15
+    @State private var flexTime: Double = 10
+    @State private var breakTime: Double = 5
     @State private var timeRemaining: Double = 60
     @State private var isTimerPuased: Bool = true
     
     @State private var counter: Int = 1
-    @State private var sliderUsed: Bool = false
-    @State private var offset: CGFloat = 0
+    
+    @State private var showEditTimerPopupView: Bool = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                Circle()
-                    .stroke(Color.gray.opacity(0.15), lineWidth: 15)
-                    .frame(width: UIScreen.main.bounds.width * 0.80)
-                    .overlay(
-                        ZStack {
-                            Circle()
-                                .trim(from: 0, to: vm.timeRemainingInPercent(timeSelected: Int(timeSelected), timeRemaining: counter))
-                                .stroke(Color.blue, lineWidth: 15)
-                                .rotationEffect(.degrees(-90))
-                            Text("\(Int(timeSelected) - counter)")
-                                .font(.title.bold())
-                                .onReceive(vm.timer) { _ in
-                                                if timeRemaining > 0 {
-                                                    timeRemaining -= 1
-                                                }
-                                            }
+            ZStack {
+                VStack {
+                    HStack {
+                        VStack {
+                            Text("Window")
+                            Text(flexTime.asNumberString())
                         }
-                    )
-                
-                startAndPauseButtons
+                        VStack {
+                            Text("Focus")
+                            Text(focusTime.asNumberString())
+                        }
+                        .onTapGesture {
+                            showEditTimerPopupView = true
+                        }
+                        VStack {
+                            Text("Break")
+                            Text(breakTime.asNumberString())
+                        }
+                    }
+                    
+                    timerView
+                    startAndPauseButtons
+                }
+                .navigationTitle("Flexodoro")
+                .onAppear(perform: vm.pauseTimer)
+                .onChange(of: timeRemaining) { _ in
+                    inverse()
+                }
+    //            .overlay(
+    //                EditTimeView(timeSelected: $timeSelected)
+    //            )
+                EditTimerPopupView(showEditTimerPopupView: $showEditTimerPopupView, timeSelected: $focusTime)
             }
-            .navigationTitle("Flexodoro")
-            .onAppear(perform: vm.pauseTimer)
-            .onChange(of: timeRemaining) { _ in
-                inverse()
-            }
-//            .overlay(
-//                EditTimeView(timeSelected: $timeSelected)
-//            )
         }
     }
 }
@@ -61,6 +66,27 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 extension HomeView {
+    private var timerView: some View {
+        Circle()
+            .stroke(Color.theme.buttonBackground, lineWidth: 15)
+            .frame(width: UIScreen.main.bounds.width * 0.80, height: UIScreen.main.bounds.height * 0.45)
+            .overlay(
+                ZStack {
+                    Circle()
+                        .trim(from: 0, to: vm.timeRemainingInPercent(timeSelected: Int(focusTime), timeRemaining: counter))
+                        .stroke(Color.theme.accent, lineWidth: 15)
+                        .rotationEffect(.degrees(-90))
+                    Text("\(Int(focusTime) - counter)")
+                        .font(.title.bold())
+                        .onReceive(vm.timer) { _ in
+                                        if timeRemaining > 0 {
+                                            timeRemaining -= 1
+                                        }
+                                    }
+                }
+            )
+    }
+    
     private var startAndPauseButtons: some View {
         VStack {
             if isTimerPuased {
@@ -82,7 +108,7 @@ extension HomeView {
     }
     
     func inverse() -> Int {
-        if counter <= Int(timeSelected) {
+        if counter <= Int(focusTime) {
             counter += 1
         }
         return counter

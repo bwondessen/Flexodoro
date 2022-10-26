@@ -16,7 +16,7 @@ struct ButtonView: View {
             .foregroundColor(.white)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(.blue)
+            .background(Color.theme.accent)
             .cornerRadius(10)
             .padding(.horizontal)
     }

@@ -13,7 +13,9 @@
 		363C6B1029074D1E0037E19F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 363C6B0F29074D1E0037E19F /* Preview Assets.xcassets */; };
 		363C6B1B290753590037E19F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B1A290753590037E19F /* HomeViewModel.swift */; };
 		363C6B1F2907636D0037E19F /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B1E2907636D0037E19F /* ButtonView.swift */; };
-		363C6B212907B3430037E19F /* EditTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B202907B3430037E19F /* EditTimeView.swift */; };
+		363C6B212907B3430037E19F /* EditTimerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B202907B3430037E19F /* EditTimerPopupView.swift */; };
+		363C6B242908A09B0037E19F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B232908A09B0037E19F /* Double.swift */; };
+		363C6B262908B7A10037E19F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B252908B7A10037E19F /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +26,9 @@
 		363C6B0F29074D1E0037E19F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		363C6B1A290753590037E19F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		363C6B1E2907636D0037E19F /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
-		363C6B202907B3430037E19F /* EditTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeView.swift; sourceTree = "<group>"; };
+		363C6B202907B3430037E19F /* EditTimerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimerPopupView.swift; sourceTree = "<group>"; };
+		363C6B232908A09B0037E19F /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		363C6B252908B7A10037E19F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				363C6B0829074D1A0037E19F /* FlexodoroApp.swift */,
+				363C6B222908A08B0037E19F /* Extensions */,
 				363C6B1629074E500037E19F /* Models */,
 				363C6B1C290763300037E19F /* Core */,
 				363C6B0C29074D1E0037E19F /* Assets.xcassets */,
@@ -111,9 +116,18 @@
 			isa = PBXGroup;
 			children = (
 				363C6B1E2907636D0037E19F /* ButtonView.swift */,
-				363C6B202907B3430037E19F /* EditTimeView.swift */,
+				363C6B202907B3430037E19F /* EditTimerPopupView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		363C6B222908A08B0037E19F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				363C6B232908A09B0037E19F /* Double.swift */,
+				363C6B252908B7A10037E19F /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,8 +202,10 @@
 			files = (
 				363C6B0B29074D1A0037E19F /* HomeView.swift in Sources */,
 				363C6B1B290753590037E19F /* HomeViewModel.swift in Sources */,
-				363C6B212907B3430037E19F /* EditTimeView.swift in Sources */,
+				363C6B262908B7A10037E19F /* Color.swift in Sources */,
+				363C6B212907B3430037E19F /* EditTimerPopupView.swift in Sources */,
 				363C6B1F2907636D0037E19F /* ButtonView.swift in Sources */,
+				363C6B242908A09B0037E19F /* Double.swift in Sources */,
 				363C6B0929074D1A0037E19F /* FlexodoroApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
