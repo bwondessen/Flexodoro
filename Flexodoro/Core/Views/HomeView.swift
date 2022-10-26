@@ -41,9 +41,16 @@ struct HomeView: View {
                             Text(breakTime.asNumberString())
                         }
                     }
-                    
+                    Text("focus time: \(focusTime)")
+                    Text("time remaining \(timeRemaining)")
                     timerView
                     startAndPauseButtons
+                    Button {
+                        vm.resetTimer(timeSelected: focusTime, timeRemaining: &timeRemaining)
+                    } label: {
+                        Text("reset")
+                    }
+
                 }
                 .navigationTitle("Flexodoro")
                 .onAppear(perform: vm.pauseTimer)
@@ -76,7 +83,7 @@ extension HomeView {
                         .trim(from: 0, to: vm.timeRemainingInPercent(timeSelected: Int(focusTime), timeRemaining: counter))
                         .stroke(Color.theme.accent, lineWidth: 15)
                         .rotationEffect(.degrees(-90))
-                    Text("\(Int(focusTime) - counter)")
+                    Text("\(Int(focusTime + 1) - counter)")
                         .font(.title.bold())
                         .onReceive(vm.timer) { _ in
                                         if timeRemaining > 0 {

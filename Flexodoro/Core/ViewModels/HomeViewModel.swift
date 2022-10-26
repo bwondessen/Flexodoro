@@ -19,6 +19,10 @@ class HomeViewModel: ObservableObject {
         self.timer.upstream.connect().cancel()
     }
     
+    func resetTimer(timeSelected: Double, timeRemaining: inout Double) {
+        timeRemaining = timeSelected
+    }
+    
     func timeRemainingInPercent(timeSelected: Int, timeRemaining: Int) -> Double {
         guard timeSelected > 0 else { return 0 }
         
