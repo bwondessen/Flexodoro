@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		363C6B0929074D1A0037E19F /* FlexodoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B0829074D1A0037E19F /* FlexodoroApp.swift */; };
+		363C6B0929074D1A0037E19F /* Flowdoro App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B0829074D1A0037E19F /* Flowdoro App.swift */; };
 		363C6B0B29074D1A0037E19F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B0A29074D1A0037E19F /* HomeView.swift */; };
 		363C6B0D29074D1E0037E19F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 363C6B0C29074D1E0037E19F /* Assets.xcassets */; };
 		363C6B1029074D1E0037E19F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 363C6B0F29074D1E0037E19F /* Preview Assets.xcassets */; };
@@ -19,8 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		363C6B0529074D1A0037E19F /* Flexodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flexodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		363C6B0829074D1A0037E19F /* FlexodoroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexodoroApp.swift; sourceTree = "<group>"; };
+		363C6B0529074D1A0037E19F /* Flowdoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flowdoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		363C6B0829074D1A0037E19F /* Flowdoro App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flowdoro App.swift"; sourceTree = "<group>"; };
 		363C6B0A29074D1A0037E19F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		363C6B0C29074D1E0037E19F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		363C6B0F29074D1E0037E19F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		363C6AFC29074D1A0037E19F = {
 			isa = PBXGroup;
 			children = (
-				363C6B0729074D1A0037E19F /* Flexodoro */,
+				363C6B0729074D1A0037E19F /* Flowdoro */,
 				363C6B0629074D1A0037E19F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,22 +53,22 @@
 		363C6B0629074D1A0037E19F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				363C6B0529074D1A0037E19F /* Flexodoro.app */,
+				363C6B0529074D1A0037E19F /* Flowdoro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		363C6B0729074D1A0037E19F /* Flexodoro */ = {
+		363C6B0729074D1A0037E19F /* Flowdoro */ = {
 			isa = PBXGroup;
 			children = (
-				363C6B0829074D1A0037E19F /* FlexodoroApp.swift */,
+				363C6B0829074D1A0037E19F /* Flowdoro App.swift */,
 				363C6B222908A08B0037E19F /* Extensions */,
 				363C6B1629074E500037E19F /* Models */,
 				363C6B1C290763300037E19F /* Core */,
 				363C6B0C29074D1E0037E19F /* Assets.xcassets */,
 				363C6B0E29074D1E0037E19F /* Preview Content */,
 			);
-			path = Flexodoro;
+			path = Flowdoro;
 			sourceTree = "<group>";
 		};
 		363C6B0E29074D1E0037E19F /* Preview Content */ = {
@@ -147,7 +147,7 @@
 			);
 			name = Flexodoro;
 			productName = Flexodoro;
-			productReference = 363C6B0529074D1A0037E19F /* Flexodoro.app */;
+			productReference = 363C6B0529074D1A0037E19F /* Flowdoro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +206,7 @@
 				363C6B212907B3430037E19F /* EditTimerPopupView.swift in Sources */,
 				363C6B1F2907636D0037E19F /* ButtonView.swift in Sources */,
 				363C6B242908A09B0037E19F /* Double.swift in Sources */,
-				363C6B0929074D1A0037E19F /* FlexodoroApp.swift in Sources */,
+				363C6B0929074D1A0037E19F /* Flowdoro App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +334,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Flexodoro/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Flowdoro/Preview Content\"";
 				DEVELOPMENT_TEAM = PMP3AMXY6R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -348,8 +348,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brukewondessen.Flexodoro;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brukewondessen.-Flowdoro";
+				PRODUCT_NAME = Flowdoro;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -363,7 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Flexodoro/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Flowdoro/Preview Content\"";
 				DEVELOPMENT_TEAM = PMP3AMXY6R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -377,8 +377,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brukewondessen.Flexodoro;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brukewondessen.-Flowdoro";
+				PRODUCT_NAME = Flowdoro;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

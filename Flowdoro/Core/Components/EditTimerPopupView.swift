@@ -1,6 +1,6 @@
 //
 //  EditTimeView.swift
-//  Flexodoro
+//  Flowdoro
 //
 //  Created by Bruke on 10/25/22.
 //
@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct EditTimerPopupView: View {
-    @Binding var showEditTimerPopupView: Bool
+    @EnvironmentObject private var vm: HomeViewModel
     
-    @Binding var timeSelected: Double
+    @Binding var showEditTimerPopupView: Bool
     @State private var showPicker: Bool = false
+    @State private var selectedTime: Double = 0
+    
+    @State private var buttonOneTapped: Bool = false
+    @State private var buttonTwoTapped: Bool = false
+    @State private var buttonThreeTapped: Bool = false
+    @State private var customButtonTapped: Bool = false
     
     var body: some View {
         ZStack {
@@ -27,32 +33,47 @@ struct EditTimerPopupView: View {
                         Spacer()
                         Text("15:00")
                             .padding(5)
+                            .foregroundColor(buttonOneTapped ? .white : .primary)
                             .background(
                                 RoundedRectangle(cornerRadius: 3)
-                                    .fill(Color.theme.buttonBackground)
+                                    .fill(buttonOneTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
-                                timeSelected = 15
+                                selectedTime = 15
+                                buttonOneTapped = true
+                                buttonTwoTapped = false
+                                buttonThreeTapped = false
+                                customButtonTapped = false
                             }
                         Spacer()
                         Text("30:00")
                             .padding(5)
+                            .foregroundColor(buttonTwoTapped ? .white : .primary)
                             .background(
                                 RoundedRectangle(cornerRadius: 3)
-                                    .fill(Color.theme.buttonBackground)
+                                    .fill(buttonTwoTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
-                                timeSelected = 30
+                                selectedTime = 30
+                                buttonOneTapped = false
+                                buttonTwoTapped = true
+                                buttonThreeTapped = false
+                                customButtonTapped = false
                             }
                         Spacer()
                         Text("45:00")
                             .padding(5)
+                            .foregroundColor(buttonThreeTapped ? .white : .primary)
                             .background(
                                 RoundedRectangle(cornerRadius: 3)
-                                    .fill(Color.theme.buttonBackground)
+                                    .fill(buttonThreeTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
-                                timeSelected = 45
+                                selectedTime = 45
+                                buttonOneTapped = false
+                                buttonTwoTapped = false
+                                buttonThreeTapped = true
+                                customButtonTapped = false
                             }
                         Spacer()
                     }
@@ -63,10 +84,11 @@ struct EditTimerPopupView: View {
                     VStack {
                         Text("Custom")
                             .font(.footnote)
+                            .foregroundColor(customButtonTapped ? .white : .primary)
                             .padding(5)
                             .background(
                                 RoundedRectangle(cornerRadius: 3)
-                                    .fill(Color.theme.buttonBackground)
+                                    .fill(customButtonTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                         if showPicker {
                             HStack {
@@ -75,7 +97,7 @@ struct EditTimerPopupView: View {
                                     Text("\(num)")
                                         .font(.subheadline)
                                         .onTapGesture {
-                                            timeSelected = Double(num)
+                                            selectedTime = Double(num)
                                         }
                                     Spacer()
                                 }
@@ -84,12 +106,20 @@ struct EditTimerPopupView: View {
                     }
                     .onTapGesture {
                         showPicker = true
+                        buttonOneTapped = false
+                        buttonTwoTapped = false
+                        buttonThreeTapped = false
+                        customButtonTapped = true
                     }
                     
                     Spacer()
                     
                     HStack {
                         Button {
+                            buttonOneTapped = false
+                            buttonTwoTapped = false
+                            buttonThreeTapped = false
+                            customButtonTapped = false
                             showEditTimerPopupView = false
                         } label: {
                             Text("Cancel")
@@ -103,7 +133,13 @@ struct EditTimerPopupView: View {
                         .padding(.trailing)
                         
                         Button {
-                            
+                            buttonOneTapped = false
+                            buttonTwoTapped = false
+                            buttonThreeTapped = false
+                            customButtonTapped = false
+                            vm.focusTime = selectedTime
+                            vm.focusTimeRemaining = selectedTime
+                            showEditTimerPopupView = false
                         } label: {
                             Text("Confirm")
                                 .font(.footnote)
@@ -129,13 +165,13 @@ struct EditTimerPopupView: View {
 
 struct EditTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        EditTimerPopupView(showEditTimerPopupView: .constant(false), timeSelected: .constant(60))
+        EditTimerPopupView(showEditTimerPopupView: .constant(false))
     }
 }
 
 extension EditTimerPopupView {
     private var pickerView: some View {
-        Picker("Time", selection: $timeSelected) {
+        Picker("Time", selection: $vm.focusTime) {
             ForEach(0..<30) { num in
                 Text("\(num)")
             }
