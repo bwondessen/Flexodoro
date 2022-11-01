@@ -11,9 +11,6 @@ struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
     
     @State private var showEditTimerPopupView: Bool = false
-    @State private var inFocus: Bool = true
-    @State private var inFlow: Bool = false
-    @State private var inBreak: Bool = false
     
     var body: some View {
         NavigationView {
@@ -48,22 +45,26 @@ struct HomeView: View {
                     HStack {
                         focusButton
                             .onTapGesture {
-                                inFocus = true
-                                inFlow = false
+                                //vm.startFlowdoroCycle = true
                             }
-                            .disabled(inFlow)
-                            .opacity(inFlow ? 0.70 : 1)
+                            .disabled(vm.inFlow)
+                            .opacity(vm.inFlow ? 0.70 : 1)
 //                        if inBreak {
 //                            breakButton
 //                        }
+                    }
+                    .onChange(of: vm.breakTimeRemaining) { _ in
+                        if vm.breakTimeRemaining == 0 {
+                            vm.resetCycle()
+                        }
                     }
                 }
                 .onChange(of: vm.flowTimeRemaining) { _ in
                             if vm.flowTimeRemaining == 0 {
                                 vm.pauseTimer()
-                                inFlow = false
-                                inFocus = false
-                                inBreak = true
+                                vm.inFlow = false
+                                vm.inFocus = false
+                                vm.inBreak = true
                                 vm.counter = 0
                             }
                         }
@@ -76,11 +77,11 @@ struct HomeView: View {
             }
             .onChange(of: vm.focusTimeRemaining) { _ in
                 if vm.focusTimeRemaining == 0 {
-                    inFlow = true
-                    inFocus = false
-                    inBreak = false
+                    vm.inFlow = true
+                    vm.inFocus = false
+                    vm.inBreak = false
                     vm.counter = 0
-                    if inFlow {
+                    if vm.inFlow {
                         vm.startTimer()
                     }
                 }
@@ -103,25 +104,25 @@ extension HomeView {
             .overlay(
                 ZStack {
                     Circle()
-                        .trim(from: 0, to: vm.timeRemainingInPercent(inFocus: inFocus, inFlow: inFlow, inBreak: inBreak))
+                        .trim(from: 0, to: vm.timeRemainingInPercent())
                         .stroke(Color.theme.accent, lineWidth: 15)
                         .rotationEffect(.degrees(-90))
-                    Text(inFocus ? "\(vm.focusTimeRemaining.asNumberString())" : (inFlow ? "\(vm.flowTimeRemaining.asNumberString())" : "\(vm.breakTimeRemaining.asNumberString())"))
+                    Text(vm.inFocus ? "\(vm.focusTimeRemaining.asNumberString())" : (vm.inFlow ? "\(vm.flowTimeRemaining.asNumberString())" : "\(vm.breakTimeRemaining.asNumberString())"))
                         .font(.title.bold())
                         .onReceive(vm.timer) { _ in
-                            if inFocus {
+                            if vm.inFocus {
                                 if vm.focusTimeRemaining > 0 {
                                     vm.focusTimeRemaining -= 1
                                     vm.counter += 1
                                 }
                             }
-                            if inFlow {
+                            if vm.inFlow {
                                 if vm.flowTimeRemaining > 0 {
                                     vm.flowTimeRemaining -= 1
                                     vm.counter += 1
                                 }
                             }
-                            if inBreak {
+                            if vm.inBreak {
                                 if vm.breakTimeRemaining > 0 {
                                     vm.breakTimeRemaining -= 1
                                     vm.counter += 1
@@ -133,34 +134,75 @@ extension HomeView {
     }
     
     private var focusButton: some View {
-        VStack {
-            if inFocus {
-                if vm.isTimerPaused && vm.focusTimeRemaining > 0 {
+        HStack {
+            if vm.inFocus {
+                if vm.timerPaused && vm.focusTimeRemaining > 0 {
                     Button {
-                        vm.startTimer()
+                        
+                    } label: {
+                        ButtonView(label: "Skip", selectSmallerSize: true)
+                    }
+                }
+            }
+            
+            VStack {
+                if vm.inFocus {
+                    if vm.timerPaused && vm.focusTimeRemaining > 0 {
+                        Button {
+                            vm.startTimer()
+                        } label: {
+                            ButtonView(label: "Focus")
+                        }
+                    } else if !vm.timerPaused && vm.focusTimeRemaining > 0 {
+                        Button {
+                            vm.pauseTimer()
+                        } label: {
+                            ButtonView(label: "Pause")
+                        }
+                    } else if vm.focusTimeRemaining == 0 {
+                        Button {
+                            vm.endTimer()
+                        } label: {
+                            ButtonView(label: "End")
+                        }
+                    }
+                } else if vm.inBreak {
+                    if vm.timerPaused && vm.breakTimeRemaining > 0 {
+                        Button {
+                            vm.startTimer()
+                        } label: {
+                            ButtonView(label: "Break")
+                        }
+                    } else if !vm.timerPaused && vm.breakTimeRemaining > 0 {
+                        Button {
+                            vm.pauseTimer()
+                        } label: {
+                            ButtonView(label: "Pause")
+                        }
+                    } else if vm.breakTimeRemaining == 0 {
+                        Button {
+                            vm.endTimer()
+                        } label: {
+                            ButtonView(label: "End")
+                        }
+                    }
+                } else {
+                    Button {
+                        
                     } label: {
                         ButtonView(label: "Focus")
                     }
-                } else if !vm.isTimerPaused && vm.focusTimeRemaining > 0 {
+                }
+            }
+            
+            if vm.inFocus {
+                if vm.timerPaused && vm.focusTimeRemaining > 0 {
                     Button {
-                        vm.pauseTimer()
+                        vm.endTimer()
                     } label: {
-                        ButtonView(label: "Pause")
-                    }
-                } else if vm.focusTimeRemaining == 0 {
-                    Button {
-                        vm.resetTimer()
-                    } label: {
-                        ButtonView(label: "Reset")
+                        ButtonView(label: "End", selectSmallerSize: true)
                     }
                 }
-            } else {
-                Button {
-                    vm.startTimer()
-                } label: {
-                    ButtonView(label: "Focus")
-                }
-                
             }
         }
     }
@@ -168,13 +210,13 @@ extension HomeView {
 //    private var breakButton: some View  {
 //        VStack {
 //            if inBreak {
-//                if vm.isTimerPaused && vm.breakTimeRemaining > 0 {
+//                if vm.timerPaused && vm.breakTimeRemaining > 0 {
 //                    Button {
 //                        vm.startTimer()
 //                    } label: {
 //                        ButtonView(label: "Break")
 //                    }
-//                } else if !vm.isTimerPaused && vm.focusTimeRemaining > 0 {
+//                } else if !vm.timerPaused && vm.focusTimeRemaining > 0 {
 //                    Button {
 //                        vm.pauseTimer()
 //                    } label: {

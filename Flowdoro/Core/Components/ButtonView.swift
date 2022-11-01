@@ -9,6 +9,12 @@ import SwiftUI
 
 struct ButtonView: View {
     let label: String
+    let selectSmallerSize: Bool
+    
+    init(label: String, selectSmallerSize: Bool = false) {
+        self.label = label
+        self.selectSmallerSize = selectSmallerSize
+    }
     
     var body: some View {
         Circle()
@@ -17,7 +23,7 @@ struct ButtonView: View {
                 Text(label)
                     .foregroundColor(.white)
             )
-            .frame(width: 120, height: 120)
+            .frame(width: selectSmallerSize ? 80 : 120, height: selectSmallerSize ? 80 : 120)
     }
 }
 

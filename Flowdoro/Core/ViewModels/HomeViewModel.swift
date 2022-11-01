@@ -10,30 +10,34 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @Published var isTimerPaused: Bool = true
+    @Published var timerPaused: Bool = true
     
-    @Published var focusTime: Double = 15
-    @Published var focusTimeRemaining: Double = 15
-    @Published var flowTime: Double = 10
-    @Published var flowTimeRemaining: Double = 10
-    @Published var breakTime: Double = 5
-    @Published var breakTimeRemaining: Double = 5
+    @Published var focusTime: Double = 5
+    @Published var focusTimeRemaining: Double = 5
+    @Published var flowTime: Double = 4
+    @Published var flowTimeRemaining: Double = 4
+    @Published var breakTime: Double = 3
+    @Published var breakTimeRemaining: Double = 3
     @Published var flowdoroCycle: Int = 0
+    
+    @Published var inFocus: Bool = true
+    @Published var inFlow: Bool = false
+    @Published var inBreak: Bool = false
 
     @Published var counter: Int = 0
     
     // Timer
     func startTimer() {
-        isTimerPaused = false
+        timerPaused = false
         self.timer  = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     }
     
     func pauseTimer() {
-        isTimerPaused = true
+        timerPaused = true
         self.timer.upstream.connect().cancel()
     }
     
-    func resetTimer() {
+    func endTimer() {
         pauseTimer()
         focusTimeRemaining = focusTime
         flowTimeRemaining = flowTime
@@ -41,7 +45,18 @@ class HomeViewModel: ObservableObject {
         counter = 0
     }
     
-    func timeRemainingInPercent(inFocus: Bool, inFlow: Bool, inBreak: Bool) -> Double {
+    func resetCycle() {
+        pauseTimer()
+        inFocus = true
+        inFlow = false
+        inBreak = false
+        focusTimeRemaining = focusTime
+        flowTimeRemaining = flowTime
+        breakTimeRemaining = breakTime
+        counter = 0
+    }
+    
+    func timeRemainingInPercent() -> Double {
         guard
             focusTimeRemaining >= 0,
             flowTimeRemaining >= 0
