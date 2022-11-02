@@ -21,16 +21,31 @@ struct HomeView: View {
                             Text("Flow")
                             Text(vm.flowTime.asNumberString())
                         }
+                        .onTapGesture {
+                            vm.focusSelected = false
+                            vm.flowSelected = true
+                            vm.breakSelected = false
+                            showEditTimerPopupView = true
+                        }
                         VStack {
                             Text("Focus")
                             Text(vm.focusTime.asNumberString())
                         }
                         .onTapGesture {
+                            vm.focusSelected = true
+                            vm.flowSelected = false
+                            vm.breakSelected = false
                             showEditTimerPopupView = true
                         }
                         VStack {
                             Text("Break")
                             Text(vm.breakTime.asNumberString())
+                        }
+                        .onTapGesture {
+                            vm.focusSelected = false
+                            vm.flowSelected = false
+                            vm.breakSelected = true
+                            showEditTimerPopupView = true
                         }
                     }
                     Text("focus time: \(vm.focusTime)")

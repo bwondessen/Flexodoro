@@ -137,8 +137,7 @@ struct EditTimerPopupView: View {
                             buttonTwoTapped = false
                             buttonThreeTapped = false
                             customButtonTapped = false
-                            vm.focusTime = selectedTime
-                            vm.focusTimeRemaining = selectedTime
+                            editTimer()
                             showEditTimerPopupView = false
                         } label: {
                             Text("Confirm")
@@ -175,6 +174,19 @@ extension EditTimerPopupView {
             ForEach(0..<30) { num in
                 Text("\(num)")
             }
+        }
+    }
+    
+    func editTimer() {
+        if vm.focusSelected {
+            vm.focusTime = selectedTime
+            vm.focusTimeRemaining = selectedTime
+        } else if vm.flowSelected {
+            vm.flowTime = selectedTime
+            vm.flowTimeRemaining = selectedTime
+        } else if vm.breakSelected {
+            vm.breakTime = selectedTime
+            vm.breakTimeRemaining = selectedTime
         }
     }
 }

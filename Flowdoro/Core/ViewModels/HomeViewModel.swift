@@ -23,7 +23,11 @@ class HomeViewModel: ObservableObject {
     @Published var inFocus: Bool = true
     @Published var inFlow: Bool = false
     @Published var inBreak: Bool = false
-
+    
+    @Published var focusSelected: Bool = false
+    @Published var flowSelected: Bool = false
+    @Published var breakSelected: Bool = false
+    
     @Published var counter: Int = 0
     
     // Timer
