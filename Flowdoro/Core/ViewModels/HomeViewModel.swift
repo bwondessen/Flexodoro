@@ -37,7 +37,7 @@ class HomeViewModel: ObservableObject {
         self.timer.upstream.connect().cancel()
     }
     
-    func endTimer() {
+    func restartTimer() {
         pauseTimer()
         focusTimeRemaining = focusTime
         flowTimeRemaining = flowTime
@@ -45,7 +45,7 @@ class HomeViewModel: ObservableObject {
         counter = 0
     }
     
-    func resetCycle() {
+    func end() {
         pauseTimer()
         inFocus = true
         inFlow = false
@@ -54,6 +54,22 @@ class HomeViewModel: ObservableObject {
         flowTimeRemaining = flowTime
         breakTimeRemaining = breakTime
         counter = 0
+    }
+    
+    func skip() {
+        pauseTimer()
+        restartTimer()
+        if inFocus {
+            inFocus = false
+            inFlow = true
+            inBreak = false
+        } else if inFlow {
+            inFocus = false
+            inFlow = false
+            inBreak = true
+        } else if inBreak {
+            end()
+        }
     }
     
     func timeRemainingInPercent() -> Double {

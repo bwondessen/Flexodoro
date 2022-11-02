@@ -47,15 +47,15 @@ struct HomeView: View {
                             .onTapGesture {
                                 //vm.startFlowdoroCycle = true
                             }
-                            .disabled(vm.inFlow)
-                            .opacity(vm.inFlow ? 0.70 : 1)
+                            //.disabled(vm.inFlow)
+                            //.opacity(vm.inFlow ? 0.70 : 1)
 //                        if inBreak {
 //                            breakButton
 //                        }
                     }
                     .onChange(of: vm.breakTimeRemaining) { _ in
                         if vm.breakTimeRemaining == 0 {
-                            vm.resetCycle()
+                            //vm.resetCycle()
                         }
                     }
                 }
@@ -138,7 +138,23 @@ extension HomeView {
             if vm.inFocus {
                 if vm.timerPaused && vm.focusTimeRemaining > 0 {
                     Button {
-                        
+                        vm.skip()
+                    } label: {
+                        ButtonView(label: "Skip", selectSmallerSize: true)
+                    }
+                }
+            } else if vm.inFlow {
+                if vm.timerPaused && vm.flowTimeRemaining > 0 {
+                    Button {
+                        vm.skip()
+                    } label: {
+                        ButtonView(label: "Skip", selectSmallerSize: true)
+                    }
+                }
+            } else if vm.inBreak {
+                if vm.timerPaused && vm.breakTimeRemaining > 0 {
+                    Button {
+                        vm.skip()
                     } label: {
                         ButtonView(label: "Skip", selectSmallerSize: true)
                     }
@@ -161,9 +177,23 @@ extension HomeView {
                         }
                     } else if vm.focusTimeRemaining == 0 {
                         Button {
-                            vm.endTimer()
+                            vm.restartTimer()
                         } label: {
                             ButtonView(label: "End")
+                        }
+                    }
+                } else if vm.inFlow {
+                    if vm.timerPaused && vm.breakTimeRemaining > 0 {
+                        Button {
+                            vm.startTimer()
+                        } label: {
+                            ButtonView(label: "Flow")
+                        }
+                    } else if !vm.timerPaused && vm.breakTimeRemaining > 0 {
+                        Button {
+                            vm.pauseTimer()
+                        } label: {
+                            ButtonView(label: "Pause")
                         }
                     }
                 } else if vm.inBreak {
@@ -181,16 +211,16 @@ extension HomeView {
                         }
                     } else if vm.breakTimeRemaining == 0 {
                         Button {
-                            vm.endTimer()
+                            vm.end()
                         } label: {
-                            ButtonView(label: "End")
+                            ButtonView(label: "Reset")
                         }
                     }
                 } else {
                     Button {
-                        
+                        vm.end()
                     } label: {
-                        ButtonView(label: "Focus")
+                        ButtonView(label: "Reset")
                     }
                 }
             }
@@ -198,7 +228,23 @@ extension HomeView {
             if vm.inFocus {
                 if vm.timerPaused && vm.focusTimeRemaining > 0 {
                     Button {
-                        vm.endTimer()
+                        vm.restartTimer()
+                    } label: {
+                        ButtonView(label: "End", selectSmallerSize: true)
+                    }
+                }
+            } else if vm.inFlow {
+                if vm.timerPaused && vm.flowTimeRemaining > 0 {
+                    Button {
+                        vm.end()
+                    } label: {
+                        ButtonView(label: "End", selectSmallerSize: true)
+                    }
+                }
+            } else if vm.inBreak {
+                if vm.timerPaused && vm.breakTimeRemaining > 0 {
+                    Button {
+                        vm.end()
                     } label: {
                         ButtonView(label: "End", selectSmallerSize: true)
                     }
