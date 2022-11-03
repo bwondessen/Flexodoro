@@ -18,7 +18,7 @@ class HomeViewModel: ObservableObject {
     @Published var flowTimeRemaining: Double = 4
     @Published var breakTime: Double = 3
     @Published var breakTimeRemaining: Double = 3
-    @Published var flowdoroCycle: Int = 0
+    @Published var totalCycles: Int = 0
     
     @Published var inFocus: Bool = true
     @Published var inFlow: Bool = false
@@ -50,6 +50,9 @@ class HomeViewModel: ObservableObject {
     }
     
     func end() {
+        if inBreak && breakTimeRemaining > 0 {
+            totalCycles += 1
+        }
         pauseTimer()
         inFocus = true
         inFlow = false

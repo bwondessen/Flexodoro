@@ -48,29 +48,25 @@ struct HomeView: View {
                             showEditTimerPopupView = true
                         }
                     }
-                    Text("focus time: \(vm.focusTime)")
-                    Text("focus time remaining: \(vm.focusTimeRemaining)")
-                    Text("flow time: \(vm.flowTime)")
-                    Text("flow time remaining: \(vm.flowTimeRemaining)")
-                    Text("break time: \(vm.breakTime)")
-                    Text("break time remaining: \(vm.breakTimeRemaining)")
-                    Text("counter: \(vm.counter)")
+                    Group {
+                        Text("focus time: \(vm.focusTime)")
+                        Text("focus time remaining: \(vm.focusTimeRemaining)")
+                        Text("flow time: \(vm.flowTime)")
+                        Text("flow time remaining: \(vm.flowTimeRemaining)")
+                        Text("break time: \(vm.breakTime)")
+                        Text("break time remaining: \(vm.breakTimeRemaining)")
+                        Text("counter: \(vm.counter)")
+                        Text("total cycles: \(vm.totalCycles)")
+                    }
                     timerView
                     
                     HStack {
                         focusButton
-                            .onTapGesture {
-                                //vm.startFlowdoroCycle = true
-                            }
-                            //.disabled(vm.inFlow)
-                            //.opacity(vm.inFlow ? 0.70 : 1)
-//                        if inBreak {
-//                            breakButton
-//                        }
                     }
                     .onChange(of: vm.breakTimeRemaining) { _ in
                         if vm.breakTimeRemaining == 0 {
                             //vm.resetCycle()
+                            vm.totalCycles += 1
                         }
                     }
                 }
