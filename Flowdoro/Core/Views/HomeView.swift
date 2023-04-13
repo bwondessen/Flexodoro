@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
+    @StateObject private var delegate = NotificationDelegate()
     
     @State private var showEditTimerPopupView: Bool = false
     
@@ -177,6 +179,7 @@ extension HomeView {
                     if vm.timerPaused && vm.focusTimeRemaining > 0 {
                         Button {
                             vm.startTimer()
+                            userNotification()
                         } label: {
                             ButtonView(label: "Focus")
                         }
@@ -194,13 +197,14 @@ extension HomeView {
                         }
                     }
                 } else if vm.inFlow {
-                    if vm.timerPaused && vm.breakTimeRemaining > 0 {
+                    if vm.timerPaused && vm.flowTimeRemaining > 0 {
                         Button {
                             vm.startTimer()
+                            userNotification()
                         } label: {
                             ButtonView(label: "Flow")
                         }
-                    } else if !vm.timerPaused && vm.breakTimeRemaining > 0 {
+                    } else if !vm.timerPaused && vm.flowTimeRemaining > 0 {
                         Button {
                             vm.pauseTimer()
                         } label: {
@@ -211,6 +215,7 @@ extension HomeView {
                     if vm.timerPaused && vm.breakTimeRemaining > 0 {
                         Button {
                             vm.startTimer()
+                            userNotification()
                         } label: {
                             ButtonView(label: "Break")
                         }
@@ -261,6 +266,46 @@ extension HomeView {
                     }
                 }
             }
+        }
+    }
+    
+    func userNotification() {
+        let center = UNUserNotificationCenter.current()
+        
+        let addRequest = {
+            let content = UNMutableNotificationContent()
+            content.title = "title"
+            content.subtitle = "subtitle"
+            content.body = "body"
+            content.sound = UNNotificationSound.default
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (vm.inFocus ? vm.focusTimeRemaining : (vm.inFlow ? vm.flowTimeRemaining - 0.0005 : vm.breakTimeRemaining)), repeats: false)
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            
+            center.add(request)
+        }
+        
+        center.getNotificationSettings { settings in
+            if settings.authorizationStatus == .authorized {
+                addRequest()
+                UNUserNotificationCenter.current().delegate = delegate
+            } else {
+                center.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                    if success {
+                        addRequest()
+                        UNUserNotificationCenter.current().delegate = delegate
+                    } else {
+                        print("bet")
+                    }
+                }
+            }
+        }
+    }
+    
+    class NotificationDelegate: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+        func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+            completionHandler([.badge, .banner, .sound])
         }
     }
     

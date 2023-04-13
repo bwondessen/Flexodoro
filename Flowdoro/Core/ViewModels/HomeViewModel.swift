@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UserNotifications
 
 class HomeViewModel: ObservableObject {
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -38,6 +39,7 @@ class HomeViewModel: ObservableObject {
     
     func pauseTimer() {
         timerPaused = true
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         self.timer.upstream.connect().cancel()
     }
     
