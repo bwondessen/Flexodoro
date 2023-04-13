@@ -43,7 +43,9 @@ class HomeViewModel: ObservableObject {
     
     func restartTimer() {
         pauseTimer()
-        focusTimeRemaining = focusTime
+        if !inFocus {
+            focusTimeRemaining = focusTime
+        }
         flowTimeRemaining = flowTime
         breakTimeRemaining = breakTime
         counter = 0
@@ -64,18 +66,20 @@ class HomeViewModel: ObservableObject {
     }
     
     func skip() {
-        pauseTimer()
-        restartTimer()
-        if inFocus {
-            inFocus = false
-            inFlow = true
-            inBreak = false
-        } else if inFlow {
-            inFocus = false
-            inFlow = false
-            inBreak = true
-        } else if inBreak {
-            end()
+        if focusTime > focusTimeRemaining {
+            pauseTimer()
+            restartTimer()
+            if inFocus {
+                inFocus = false
+                inFlow = true
+                inBreak = false
+            } else if inFlow {
+                inFocus = false
+                inFlow = false
+                inBreak = true
+            } else if inBreak {
+                end()
+            }
         }
     }
     
