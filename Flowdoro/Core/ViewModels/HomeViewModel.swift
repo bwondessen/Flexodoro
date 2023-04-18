@@ -31,6 +31,10 @@ class HomeViewModel: ObservableObject {
     
     @Published var counter: Int = 0
     
+    var timeStudied: Double {
+        (focusTime - focusTimeRemaining) + (flowTime - flowTimeRemaining) 
+    }
+    
     // Timer
     func startTimer() {
         timerPaused = false

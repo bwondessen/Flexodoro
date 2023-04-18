@@ -16,6 +16,9 @@
 		363C6B212907B3430037E19F /* EditTimerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B202907B3430037E19F /* EditTimerPopupView.swift */; };
 		363C6B242908A09B0037E19F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B232908A09B0037E19F /* Double.swift */; };
 		363C6B262908B7A10037E19F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B252908B7A10037E19F /* Color.swift */; };
+		36AA1DDD29EE10F200FDFAA3 /* StatsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DDB29EE10F200FDFAA3 /* StatsModel.xcdatamodeld */; };
+		36AA1DDF29EE127B00FDFAA3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DDE29EE127B00FDFAA3 /* DataController.swift */; };
+		36AA1DE229EE1B0800FDFAA3 /* TimeFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DE129EE1B0800FDFAA3 /* TimeFormatting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		363C6B202907B3430037E19F /* EditTimerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimerPopupView.swift; sourceTree = "<group>"; };
 		363C6B232908A09B0037E19F /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		363C6B252908B7A10037E19F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		36AA1DDC29EE10F200FDFAA3 /* StudyStatsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudyStatsModel.xcdatamodel; sourceTree = "<group>"; };
+		36AA1DDE29EE127B00FDFAA3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		36AA1DE129EE1B0800FDFAA3 /* TimeFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +67,12 @@
 		363C6B0729074D1A0037E19F /* Flowdoro */ = {
 			isa = PBXGroup;
 			children = (
+				36AA1DE029EE1AF900FDFAA3 /* Helpers */,
 				363C6B0829074D1A0037E19F /* Flowdoro App.swift */,
 				363C6B222908A08B0037E19F /* Extensions */,
 				363C6B1629074E500037E19F /* Models */,
 				363C6B1C290763300037E19F /* Core */,
+				36AA1DDA29EE10A700FDFAA3 /* DataModel */,
 				363C6B0C29074D1E0037E19F /* Assets.xcassets */,
 				363C6B0E29074D1E0037E19F /* Preview Content */,
 			);
@@ -128,6 +136,23 @@
 				363C6B252908B7A10037E19F /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		36AA1DDA29EE10A700FDFAA3 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				36AA1DDB29EE10F200FDFAA3 /* StatsModel.xcdatamodeld */,
+				36AA1DDE29EE127B00FDFAA3 /* DataController.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		36AA1DE029EE1AF900FDFAA3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				36AA1DE129EE1B0800FDFAA3 /* TimeFormatting.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +229,10 @@
 				363C6B1B290753590037E19F /* HomeViewModel.swift in Sources */,
 				363C6B262908B7A10037E19F /* Color.swift in Sources */,
 				363C6B212907B3430037E19F /* EditTimerPopupView.swift in Sources */,
+				36AA1DDF29EE127B00FDFAA3 /* DataController.swift in Sources */,
+				36AA1DE229EE1B0800FDFAA3 /* TimeFormatting.swift in Sources */,
 				363C6B1F2907636D0037E19F /* ButtonView.swift in Sources */,
+				36AA1DDD29EE10F200FDFAA3 /* StatsModel.xcdatamodeld in Sources */,
 				363C6B242908A09B0037E19F /* Double.swift in Sources */,
 				363C6B0929074D1A0037E19F /* Flowdoro App.swift in Sources */,
 			);
@@ -407,6 +435,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		36AA1DDB29EE10F200FDFAA3 /* StatsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				36AA1DDC29EE10F200FDFAA3 /* StudyStatsModel.xcdatamodel */,
+			);
+			currentVersion = 36AA1DDC29EE10F200FDFAA3 /* StudyStatsModel.xcdatamodel */;
+			path = StatsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 363C6AFD29074D1A0037E19F /* Project object */;
 }

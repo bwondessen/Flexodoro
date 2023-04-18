@@ -7,9 +7,12 @@
 
 import SwiftUI
 import UserNotifications
+import CoreData
 
 struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
     @StateObject private var delegate = NotificationDelegate()
     
     @State private var showEditTimerPopupView: Bool = false
@@ -59,6 +62,9 @@ struct HomeView: View {
                         Text("break time remaining: \(vm.breakTimeRemaining)")
                         Text("counter: \(vm.counter)")
                         Text("total cycles: \(vm.totalCycles)")
+                        ForEach(stats) { stat in
+                            Text("betski: \(stat.cylces)")
+                        }
                     }
                     timerView
                     
@@ -147,6 +153,7 @@ extension HomeView {
     }
     
     private var focusButton: some View {
+        // Skip button
         HStack {
             if vm.inFocus {
                 if vm.timerPaused && vm.focusTimeRemaining > 0 {
@@ -168,12 +175,14 @@ extension HomeView {
                 if vm.timerPaused && vm.breakTimeRemaining > 0 {
                     Button {
                         vm.skip()
+                        DataController().addStats(timeStudied: vm.timeStudied, context: moc)
                     } label: {
                         ButtonView(label: "Skip", selectSmallerSize: true)
                     }
                 }
             }
             
+            // Start button
             VStack {
                 if vm.inFocus {
                     if vm.timerPaused && vm.focusTimeRemaining > 0 {
@@ -228,6 +237,7 @@ extension HomeView {
                     } else if vm.breakTimeRemaining == 0 {
                         Button {
                             vm.end()
+                            DataController().addStats(timeStudied: vm.timeStudied, context: moc)
                         } label: {
                             ButtonView(label: "Reset")
                         }
@@ -241,6 +251,7 @@ extension HomeView {
                 }
             }
             
+            // End button
             if vm.inFocus {
                 if vm.timerPaused && vm.focusTimeRemaining > 0 {
                     Button {
@@ -279,7 +290,7 @@ extension HomeView {
             content.body = "body"
             content.sound = UNNotificationSound.default
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (vm.inFocus ? vm.focusTimeRemaining : (vm.inFlow ? vm.flowTimeRemaining - 0.0005 : vm.breakTimeRemaining)), repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (vm.inFocus ? vm.focusTimeRemaining : (vm.inFlow ? vm.flowTimeRemaining - 0.05 : vm.breakTimeRemaining)), repeats: false)
             
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
             
