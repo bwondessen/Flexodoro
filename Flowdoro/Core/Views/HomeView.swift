@@ -17,6 +17,10 @@ struct HomeView: View {
     
     @State private var showEditTimerPopupView: Bool = false
     
+    var timeStudied: Double {
+        (vm.focusTime - vm.focusTimeRemaining) + (vm.flowTime - vm.flowTimeRemaining)
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -62,10 +66,14 @@ struct HomeView: View {
                         Text("break time remaining: \(vm.breakTimeRemaining)")
                         Text("counter: \(vm.counter)")
                         Text("total cycles: \(vm.totalCycles)")
+                        ScrollView {
                         ForEach(stats) { stat in
-                            Text("betski: \(stat.cylces)")
+                            Text("betski: \(stat.timeStudied)")
                         }
+                        }
+                        .frame(height: 100)
                     }
+                    
                     timerView
                     
                     HStack {
@@ -174,8 +182,9 @@ extension HomeView {
             } else if vm.inBreak {
                 if vm.timerPaused && vm.breakTimeRemaining > 0 {
                     Button {
-                        vm.skip()
-                        DataController().addStats(timeStudied: vm.timeStudied, context: moc)
+                        DataController().addStats(timeStudied: timeStudied, context: moc)
+                        //vm.skip()
+                        vm.end()
                     } label: {
                         ButtonView(label: "Skip", selectSmallerSize: true)
                     }
@@ -236,8 +245,8 @@ extension HomeView {
                         }
                     } else if vm.breakTimeRemaining == 0 {
                         Button {
+                            DataController().addStats(timeStudied: timeStudied, context: moc)
                             vm.end()
-                            DataController().addStats(timeStudied: vm.timeStudied, context: moc)
                         } label: {
                             ButtonView(label: "Reset")
                         }

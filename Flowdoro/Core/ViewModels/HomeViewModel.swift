@@ -30,10 +30,10 @@ class HomeViewModel: ObservableObject {
     @Published var breakSelected: Bool = false
     
     @Published var counter: Int = 0
-    
-    var timeStudied: Double {
-        (focusTime - focusTimeRemaining) + (flowTime - flowTimeRemaining) 
-    }
+        
+//    var timeStudied: Double {
+//        (focusTime - focusTimeRemaining) + (flowTime - flowTimeRemaining)
+//    }
     
     // Timer
     func startTimer() {
@@ -72,9 +72,10 @@ class HomeViewModel: ObservableObject {
     }
     
     func skip() {
+        counter = 0
         if focusTime > focusTimeRemaining {
             pauseTimer()
-            restartTimer()
+            //restartTimer()
             if inFocus {
                 inFocus = false
                 inFlow = true

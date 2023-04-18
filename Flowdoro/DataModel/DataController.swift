@@ -33,6 +33,7 @@ class DataController: ObservableObject {
         stats.id = UUID()
         stats.date = Date()
         stats.cylces += 1
+        stats.timeStudied = timeStudied
         
         save(context: context)
     }
