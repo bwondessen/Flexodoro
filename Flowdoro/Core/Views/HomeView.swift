@@ -69,18 +69,20 @@ struct HomeView: View {
                     
                     Text("total time: \(totalTimeStudied)")
 //                    Group {
-//                        Text("focus time: \(vm.focusTime)")
-//                        Text("focus time remaining: \(vm.focusTimeRemaining)")
-//                        Text("flow time: \(vm.flowTime)")
-//                        Text("flow time remaining: \(vm.flowTimeRemaining)")
-//                        Text("break time: \(vm.breakTime)")
-//                        Text("break time remaining: \(vm.breakTimeRemaining)")
-//                        Text("counter: \(vm.counter)")
-//                        Text("total cycles: \(vm.totalCycles)")
+//                                                Text("focus time: \(vm.focusTime)")
+//                                                Text("focus time remaining: \(vm.focusTimeRemaining)")
+//                                                Text("flow time: \(vm.flowTime)")
+//                                                Text("flow time remaining: \(vm.flowTimeRemaining)")
+//                                                Text("break time: \(vm.breakTime)")
+//                                                Text("break time remaining: \(vm.breakTimeRemaining)")
+//                                                Text("counter: \(vm.counter)")
+//                                                Text("total cycles: \(vm.totalCycles)")
 //                        ScrollView {
-//                        ForEach(stats) { stat in
-//                            Text("betski: \(stat.timeStudied)")
-//                        }
+//                            ForEach(stats) { stat in
+//                                if Calendar.current.dateComponents([.day, .month, .year], from: stat.date ?? Date.now) == Calendar.current.dateComponents([.day, .month, .year], from: Date.now) {
+//                                    Text("betski: \(stat.date ?? Date())")
+//                                }
+//                            }
 //                        }
 //                        .frame(height: 55)
 //                    }
@@ -100,14 +102,14 @@ struct HomeView: View {
                     TabBarShadow()
                 }
                 .onChange(of: vm.flowTimeRemaining) { _ in
-                            if vm.flowTimeRemaining == 0 {
-                                vm.pauseTimer()
-                                vm.inFlow = false
-                                vm.inFocus = false
-                                vm.inBreak = true
-                                vm.counter = 0
-                            }
-                        }
+                    if vm.flowTimeRemaining == 0 {
+                        vm.pauseTimer()
+                        vm.inFlow = false
+                        vm.inFocus = false
+                        vm.inBreak = true
+                        vm.counter = 0
+                    }
+                }
                 .navigationTitle("Flexodoro")
                 .onAppear(perform: vm.pauseTimer)
                 //            .overlay(
@@ -342,29 +344,29 @@ extension HomeView {
         }
     }
     
-//    private var breakButton: some View  {
-//        VStack {
-//            if inBreak {
-//                if vm.timerPaused && vm.breakTimeRemaining > 0 {
-//                    Button {
-//                        vm.startTimer()
-//                    } label: {
-//                        ButtonView(label: "Break")
-//                    }
-//                } else if !vm.timerPaused && vm.focusTimeRemaining > 0 {
-//                    Button {
-//                        vm.pauseTimer()
-//                    } label: {
-//                        ButtonView(label: "Pause")
-//                    }
-//                } else if vm.focusTimeRemaining == 0 {
-//                    inFocus = true
-//                }
-//            } else {
-//                Text("hi")
-//            }
-//        }
-//    }
+    //    private var breakButton: some View  {
+    //        VStack {
+    //            if inBreak {
+    //                if vm.timerPaused && vm.breakTimeRemaining > 0 {
+    //                    Button {
+    //                        vm.startTimer()
+    //                    } label: {
+    //                        ButtonView(label: "Break")
+    //                    }
+    //                } else if !vm.timerPaused && vm.focusTimeRemaining > 0 {
+    //                    Button {
+    //                        vm.pauseTimer()
+    //                    } label: {
+    //                        ButtonView(label: "Pause")
+    //                    }
+    //                } else if vm.focusTimeRemaining == 0 {
+    //                    inFocus = true
+    //                }
+    //            } else {
+    //                Text("hi")
+    //            }
+    //        }
+    //    }
     
     //    func inverse() -> Int {
     //        if vm.focusTime == vm.focusTimeRemaining {

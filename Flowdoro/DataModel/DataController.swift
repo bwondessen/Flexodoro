@@ -32,7 +32,7 @@ class DataController: ObservableObject {
         let stats = Stats(context: context)
         stats.id = UUID()
         stats.date = Date()
-        stats.cylces += 1
+        stats.cycles += 1
         stats.timeStudied = timeStudied
         stats.totalTimeStudied = totalTimeStudied
         
