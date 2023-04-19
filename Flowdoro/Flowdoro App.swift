@@ -14,9 +14,20 @@ struct FlexodoroApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environmentObject(vm)
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+            TabView {
+                HomeView()
+                    .environmentObject(vm)
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
+                    .tabItem {
+                        Label("Timer", systemImage: "deskclock")
+                    }
+                StatsView()
+                    .environmentObject(vm)
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
+                    .tabItem {
+                        Label("Stats", systemImage: "chart.bar")
+                    }
+            }
         }
     }
 }

@@ -19,6 +19,8 @@
 		36AA1DDD29EE10F200FDFAA3 /* StatsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DDB29EE10F200FDFAA3 /* StatsModel.xcdatamodeld */; };
 		36AA1DDF29EE127B00FDFAA3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DDE29EE127B00FDFAA3 /* DataController.swift */; };
 		36AA1DE229EE1B0800FDFAA3 /* TimeFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DE129EE1B0800FDFAA3 /* TimeFormatting.swift */; };
+		36AA1DE429EF58EE00FDFAA3 /* TabBarShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DE329EF58EE00FDFAA3 /* TabBarShadow.swift */; };
+		36AA1DE629EF596E00FDFAA3 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DE529EF596E00FDFAA3 /* StatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		36AA1DDC29EE10F200FDFAA3 /* StudyStatsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudyStatsModel.xcdatamodel; sourceTree = "<group>"; };
 		36AA1DDE29EE127B00FDFAA3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		36AA1DE129EE1B0800FDFAA3 /* TimeFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatting.swift; sourceTree = "<group>"; };
+		36AA1DE329EF58EE00FDFAA3 /* TabBarShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarShadow.swift; sourceTree = "<group>"; };
+		36AA1DE529EF596E00FDFAA3 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				363C6B0A29074D1A0037E19F /* HomeView.swift */,
+				36AA1DE529EF596E00FDFAA3 /* StatsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			children = (
 				363C6B1E2907636D0037E19F /* ButtonView.swift */,
 				363C6B202907B3430037E19F /* EditTimerPopupView.swift */,
+				36AA1DE329EF58EE00FDFAA3 /* TabBarShadow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -225,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36AA1DE429EF58EE00FDFAA3 /* TabBarShadow.swift in Sources */,
 				363C6B0B29074D1A0037E19F /* HomeView.swift in Sources */,
 				363C6B1B290753590037E19F /* HomeViewModel.swift in Sources */,
 				363C6B262908B7A10037E19F /* Color.swift in Sources */,
@@ -232,6 +239,7 @@
 				36AA1DDF29EE127B00FDFAA3 /* DataController.swift in Sources */,
 				36AA1DE229EE1B0800FDFAA3 /* TimeFormatting.swift in Sources */,
 				363C6B1F2907636D0037E19F /* ButtonView.swift in Sources */,
+				36AA1DE629EF596E00FDFAA3 /* StatsView.swift in Sources */,
 				36AA1DDD29EE10F200FDFAA3 /* StatsModel.xcdatamodeld in Sources */,
 				363C6B242908A09B0037E19F /* Double.swift in Sources */,
 				363C6B0929074D1A0037E19F /* Flowdoro App.swift in Sources */,

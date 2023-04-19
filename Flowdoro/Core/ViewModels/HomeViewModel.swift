@@ -30,8 +30,10 @@ class HomeViewModel: ObservableObject {
     @Published var breakSelected: Bool = false
     
     @Published var counter: Int = 0
+    
+//    @Published var totalTimeStudied: Double = 0
         
-//    var timeStudied: Double {
+//    var totalTimeStudied: Double {
 //        (focusTime - focusTimeRemaining) + (flowTime - flowTimeRemaining)
 //    }
     
@@ -65,6 +67,7 @@ class HomeViewModel: ObservableObject {
         inFocus = true
         inFlow = false
         inBreak = false
+//        totalTimeStudied += (focusTime - focusTimeRemaining) + (flowTime - flowTimeRemaining)
         focusTimeRemaining = focusTime
         flowTimeRemaining = flowTime
         breakTimeRemaining = breakTime

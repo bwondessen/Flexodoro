@@ -21,6 +21,15 @@ struct HomeView: View {
         (vm.focusTime - vm.focusTimeRemaining) + (vm.flowTime - vm.flowTimeRemaining)
     }
     
+    var totalTimeStudied: Double {
+        var totalTime: Double = 0
+        for stat in stats {
+            totalTime += stat.timeStudied
+        }
+        
+        return totalTime
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -57,22 +66,24 @@ struct HomeView: View {
                             showEditTimerPopupView = true
                         }
                     }
-                    Group {
-                        Text("focus time: \(vm.focusTime)")
-                        Text("focus time remaining: \(vm.focusTimeRemaining)")
-                        Text("flow time: \(vm.flowTime)")
-                        Text("flow time remaining: \(vm.flowTimeRemaining)")
-                        Text("break time: \(vm.breakTime)")
-                        Text("break time remaining: \(vm.breakTimeRemaining)")
-                        Text("counter: \(vm.counter)")
-                        Text("total cycles: \(vm.totalCycles)")
-                        ScrollView {
-                        ForEach(stats) { stat in
-                            Text("betski: \(stat.timeStudied)")
-                        }
-                        }
-                        .frame(height: 100)
-                    }
+                    
+                    Text("total time: \(totalTimeStudied)")
+//                    Group {
+//                        Text("focus time: \(vm.focusTime)")
+//                        Text("focus time remaining: \(vm.focusTimeRemaining)")
+//                        Text("flow time: \(vm.flowTime)")
+//                        Text("flow time remaining: \(vm.flowTimeRemaining)")
+//                        Text("break time: \(vm.breakTime)")
+//                        Text("break time remaining: \(vm.breakTimeRemaining)")
+//                        Text("counter: \(vm.counter)")
+//                        Text("total cycles: \(vm.totalCycles)")
+//                        ScrollView {
+//                        ForEach(stats) { stat in
+//                            Text("betski: \(stat.timeStudied)")
+//                        }
+//                        }
+//                        .frame(height: 55)
+//                    }
                     
                     timerView
                     
@@ -85,6 +96,8 @@ struct HomeView: View {
                             vm.totalCycles += 1
                         }
                     }
+                    
+                    TabBarShadow()
                 }
                 .onChange(of: vm.flowTimeRemaining) { _ in
                             if vm.flowTimeRemaining == 0 {
@@ -182,7 +195,7 @@ extension HomeView {
             } else if vm.inBreak {
                 if vm.timerPaused && vm.breakTimeRemaining > 0 {
                     Button {
-                        DataController().addStats(timeStudied: timeStudied, context: moc)
+                        DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, context: moc)
                         //vm.skip()
                         vm.end()
                     } label: {
@@ -245,7 +258,7 @@ extension HomeView {
                         }
                     } else if vm.breakTimeRemaining == 0 {
                         Button {
-                            DataController().addStats(timeStudied: timeStudied, context: moc)
+                            DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, context: moc)
                             vm.end()
                         } label: {
                             ButtonView(label: "Reset")
