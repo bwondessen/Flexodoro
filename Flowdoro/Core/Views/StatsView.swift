@@ -13,6 +13,8 @@ struct StatsView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
     
+    
+    // Time studied
     var totalTimeStudied: Double {
         var totalTime: Double = 0
         for stat in stats {
@@ -33,6 +35,7 @@ struct StatsView: View {
         return amount
     }
     
+    // Cycles
     var totalCycles: Int16 {
         var cycles: Int16 = 0
         for stat in stats {
@@ -52,7 +55,28 @@ struct StatsView: View {
         
         return amount
     }
+        
+    // Break time
+    var totalBreakTime: Double {
+        var totalTime: Double = 0
+        for stat in stats {
+            totalTime += stat.timeStudied
+        }
+        
+        return totalTime
+    }
     
+    var breakTimeToday: Double {
+        var amount: Double = 0
+        for stat in stats {
+            if Calendar.current.dateComponents([.day, .month, .year], from: stat.date ?? Date.now) == Calendar.current.dateComponents([.day, .month, .year], from: Date.now) {
+                amount += stat.breakTime
+            }
+        }
+        
+        return amount
+    }
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -65,6 +89,7 @@ struct StatsView: View {
                     
                     VStack {
                         Text("Todays Cylces")
+                            .font(.title.bold())
                         Text("\(cyclesToday)")
                     }
                 }
@@ -84,6 +109,10 @@ struct StatsView: View {
                 }
                 
                 //Text("Today: \(Calendar.current.dateComponents([.day, .month, .year], from: Date.now))")
+                
+                Text("\(breakTimeToday)")
+                                
+                TabBarShadow()
             }
             .navigationTitle("Stats")
         }

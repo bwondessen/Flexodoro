@@ -17,6 +17,7 @@ struct HomeView: View {
     
     @State private var showEditTimerPopupView: Bool = false
     
+    // Time studied
     var timeStudied: Double {
         (vm.focusTime - vm.focusTimeRemaining) + (vm.flowTime - vm.flowTimeRemaining)
     }
@@ -25,6 +26,20 @@ struct HomeView: View {
         var totalTime: Double = 0
         for stat in stats {
             totalTime += stat.timeStudied
+        }
+        
+        return totalTime
+    }
+    
+    // Break time
+    var breakTime: Double {
+        vm.breakTime - vm.breakTimeRemaining
+    }
+    
+    var totalBreakTime: Double {
+        var totalTime: Double = 0
+        for stat in stats {
+            totalTime += stat.breakTime
         }
         
         return totalTime
@@ -197,7 +212,7 @@ extension HomeView {
             } else if vm.inBreak {
                 if vm.timerPaused && vm.breakTimeRemaining > 0 {
                     Button {
-                        DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, context: moc)
+                        DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, breakTime: breakTime, totalBreakTime: totalBreakTime, context: moc)
                         //vm.skip()
                         vm.end()
                     } label: {
@@ -260,7 +275,7 @@ extension HomeView {
                         }
                     } else if vm.breakTimeRemaining == 0 {
                         Button {
-                            DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, context: moc)
+                            DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, breakTime: breakTime, totalBreakTime: totalBreakTime, context: moc)
                             vm.end()
                         } label: {
                             ButtonView(label: "Reset")
