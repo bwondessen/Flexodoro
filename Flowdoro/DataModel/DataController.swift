@@ -28,7 +28,7 @@ class DataController: ObservableObject {
         }
     }
     
-    func addStats(timeStudied: Double, totalTimeStudied: Double, breakTime: Double, totalBreakTime: Double, context: NSManagedObjectContext) {
+    func addStats(timeStudied: Double, totalTimeStudied: Double, breakTime: Double, totalBreakTime: Double, task: String? = nil, context: NSManagedObjectContext) {
         let stats = Stats(context: context)
         stats.id = UUID()
         stats.date = Date()
@@ -37,6 +37,7 @@ class DataController: ObservableObject {
         stats.totalTimeStudied = totalTimeStudied
         stats.breakTime = breakTime
         stats.totalBreakTime = totalBreakTime
+        stats.task = task
         
         save(context: context)
     }

@@ -16,6 +16,10 @@ struct HomeView: View {
     @StateObject private var delegate = NotificationDelegate()
     
     @State private var showEditTimerPopupView: Bool = false
+    @State private var showTaskSheet: Bool = false
+    @State private var taskName: String = ""
+    @State private var taskColor: Color = Color.blue
+    @State private var taskCreated: Bool = false
     
     // Time studied
     var timeStudied: Double {
@@ -155,39 +159,51 @@ struct HomeView_Previews: PreviewProvider {
 
 extension HomeView {
     private var timerView: some View {
-        Circle()
-            .stroke(Color.theme.buttonBackground, lineWidth: 15)
-            .frame(width: UIScreen.main.bounds.width * 0.80, height: UIScreen.main.bounds.height * 0.45)
-            .overlay(
-                ZStack {
-                    Circle()
-                        .trim(from: 0, to: vm.timeRemainingInPercent())
-                        .stroke(Color.theme.accent, lineWidth: 15)
-                        .rotationEffect(.degrees(-90))
-                    Text(vm.inFocus ? "\(vm.focusTimeRemaining.asNumberString())" : (vm.inFlow ? "\(vm.flowTimeRemaining.asNumberString())" : "\(vm.breakTimeRemaining.asNumberString())"))
-                        .font(.title.bold())
-                        .onReceive(vm.timer) { _ in
-                            if vm.inFocus {
-                                if vm.focusTimeRemaining > 0 {
-                                    vm.focusTimeRemaining -= 1
-                                    vm.counter += 1
+        VStack {
+            Button {
+                showTaskSheet.toggle()
+            } label: {
+                Text("Select a task")
+                    .font(.callout.italic())
+            }
+            .sheet(isPresented: $showTaskSheet) {
+                AddTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated)
+            }
+            
+            Circle()
+                .stroke(Color.theme.buttonBackground, lineWidth: 15)
+                .frame(width: UIScreen.main.bounds.width * 0.80, height: UIScreen.main.bounds.height * 0.45)
+                .overlay(
+                    ZStack {
+                        Circle()
+                            .trim(from: 0, to: vm.timeRemainingInPercent())
+                            .stroke(Color.theme.accent, lineWidth: 15)
+                            .rotationEffect(.degrees(-90))
+                        Text(vm.inFocus ? "\(vm.focusTimeRemaining.asNumberString())" : (vm.inFlow ? "\(vm.flowTimeRemaining.asNumberString())" : "\(vm.breakTimeRemaining.asNumberString())"))
+                            .font(.title.bold())
+                            .onReceive(vm.timer) { _ in
+                                if vm.inFocus {
+                                    if vm.focusTimeRemaining > 0 {
+                                        vm.focusTimeRemaining -= 1
+                                        vm.counter += 1
+                                    }
+                                }
+                                if vm.inFlow {
+                                    if vm.flowTimeRemaining > 0 {
+                                        vm.flowTimeRemaining -= 1
+                                        vm.counter += 1
+                                    }
+                                }
+                                if vm.inBreak {
+                                    if vm.breakTimeRemaining > 0 {
+                                        vm.breakTimeRemaining -= 1
+                                        vm.counter += 1
+                                    }
                                 }
                             }
-                            if vm.inFlow {
-                                if vm.flowTimeRemaining > 0 {
-                                    vm.flowTimeRemaining -= 1
-                                    vm.counter += 1
-                                }
-                            }
-                            if vm.inBreak {
-                                if vm.breakTimeRemaining > 0 {
-                                    vm.breakTimeRemaining -= 1
-                                    vm.counter += 1
-                                }
-                            }
-                        }
-                }
-            )
+                    }
+                )
+        }
     }
     
     private var focusButton: some View {
