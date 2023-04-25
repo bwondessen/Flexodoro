@@ -16,10 +16,12 @@ struct HomeView: View {
     @StateObject private var delegate = NotificationDelegate()
     
     @State private var showEditTimerPopupView: Bool = false
-    @State private var showTaskSheet: Bool = false
+    @State private var showCreateTaskSheet: Bool = false
     @State private var taskName: String = ""
     @State private var taskColor: Color = Color.blue
     @State private var taskCreated: Bool = false
+    @State private var taskSelected: Bool = false
+    @State private var showAddTaskSheet: Bool = false
     
     // Time studied
     var timeStudied: Double {
@@ -161,13 +163,23 @@ extension HomeView {
     private var timerView: some View {
         VStack {
             Button {
-                showTaskSheet.toggle()
+                showCreateTaskSheet.toggle()
             } label: {
-                Text("Select a task")
+                Text("Create task")
                     .font(.callout.italic())
             }
-            .sheet(isPresented: $showTaskSheet) {
-                AddTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated)
+            .sheet(isPresented: $showCreateTaskSheet) {
+                CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated)
+            }
+            
+            Button {
+                showAddTaskSheet.toggle()
+            } label: {
+                Text("Select task")
+                    .font(.callout.italic())
+            }
+            .sheet(isPresented: $showAddTaskSheet) {
+                AddTaskView(taskSelected: $taskSelected)
             }
             
             Circle()

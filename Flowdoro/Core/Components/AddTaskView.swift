@@ -12,67 +12,61 @@ struct AddTaskView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
     
-    @Binding var taskName: String
-    @Binding var taskColor: Color
-    @Binding var taskCreated: Bool
+    @Binding var taskSelected: Bool
     
-    private let colors: [Color] = [.blue, .red, .purple, .cyan, .yellow, .orange, .green, .black, .brown, .mint, .indigo]
+    private let colors: [Color] = [.blue, .red, .purple, .cyan, .pink, .yellow, .orange, .teal, .green, .black, .brown, .mint, .gray, .indigo]
+        
+    // Time studied
+    var timeStudied: Double {
+        (vm.focusTime - vm.focusTimeRemaining) + (vm.flowTime - vm.flowTimeRemaining)
+    }
+    
+    var totalTimeStudied: Double {
+        var totalTime: Double = 0
+        for stat in stats {
+            totalTime += stat.timeStudied
+        }
+        
+        return totalTime
+    }
+    
+    // Break time
+    var breakTime: Double {
+        vm.breakTime - vm.breakTimeRemaining
+    }
+    
+    var totalBreakTime: Double {
+        var totalTime: Double = 0
+        for stat in stats {
+            totalTime += stat.breakTime
+        }
+        
+        return totalTime
+    }
     
     var body: some View {
-        List {
-            Section("Task Name") {
-                TextField("Task Name", text: $taskName)
-            }
-            
-            Section("Task Color") {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(colors, id: \.self) { color in
+        NavigationView {
+            List {
+                ForEach(stats, id: \.self) { stat in
+                    if stat.taskName != nil {
+                        HStack {
                             Circle()
-                                .foregroundColor(color)
-                                .frame(width: 45, height: 45)
-                                .opacity(color == taskColor ? 0.5 : 1)
-                                .scaleEffect(color == taskColor ? 1.1 : 1)
-                                .onTapGesture {
-                                    taskColor = color
-                                }
-                        }
-                        
-                        VStack {
-                            Image(systemName: "paintbrush.pointed")
-                                .resizable()
-                                .frame(width: 45, height: 45)
-//                            Text("Custom")
-//                                .font(.caption.italic())
+                                .foregroundColor(Color(stat.taskColor ?? "N/A"))
+                                .frame(width: 25, height: 25)
+                            Text(stat.taskName ?? "N/A")
+                                .bold()
                         }
                     }
-                    .padding()
-                    .cornerRadius(20)
                 }
             }
-            .listRowBackground(opacity(0))
-            
-            Section {
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("Add Task")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    
-                    Spacer()
-                }
-            }
-            .listRowBackground(opacity(0))
+            .navigationTitle("Tasks")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
 
-struct AddTaskView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddTaskView(taskName: .constant(""), taskColor: .constant(Color.blue), taskCreated: .constant(false))
-    }
-}
+//struct AddTaskView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddTaskView()
+//    }
+//}
