@@ -43,12 +43,14 @@ class DataController: ObservableObject {
         save(context: context)
     }
     
-    func addTasks(taskName: String, taskColor: String? = nil, context: NSManagedObjectContext) {
+    func addTasks(taskName: String, taskColor: String? = nil, timeStudied: Double, totalTimeStudied: Double, context: NSManagedObjectContext) {
         let tasks = Tasks(context: context)
         tasks.id = UUID()
         tasks.date = Date()
         tasks.taskName = taskName
         tasks.taskColor = taskColor
+        tasks.timeStudied = timeStudied
+        tasks.totalTimeStudied = totalTimeStudied
         
         save(context: context)
     }

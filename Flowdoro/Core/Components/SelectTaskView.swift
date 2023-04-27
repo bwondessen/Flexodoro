@@ -11,7 +11,7 @@ struct SelectTaskView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.id, order: .reverse)]) var tasks: FetchedResults<Tasks>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var tasks: FetchedResults<Tasks>
     
     @Environment(\.dismiss) var dismiss
     

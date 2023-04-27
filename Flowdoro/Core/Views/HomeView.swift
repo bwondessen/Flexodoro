@@ -140,6 +140,10 @@ struct HomeView: View {
 //                        Text("You studied \(taskSelected?.taskName ?? "N/A") for \(totalTimeStudiedForTask) secods")
 //                    }
                     
+                    Text("Task: \(taskSelected?.taskName ?? "N/A")")
+                    Text("You studied \(taskSelected?.taskName ?? "N/A")")
+                    Text("For \(taskSelected?.totalTimeStudied ?? 0) seconds")
+                    
                     timerView
                     
                     HStack {
@@ -274,6 +278,8 @@ extension HomeView {
                     Button {
                         DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, breakTime: breakTime, totalBreakTime: totalBreakTime, context: moc)
                         //vm.skip()
+                        taskSelected?.totalTimeStudied += timeStudied
+                        try? moc.save()
                         vm.end()
                     } label: {
                         ButtonView(label: "Skip", selectSmallerSize: true)
@@ -336,6 +342,8 @@ extension HomeView {
                     } else if vm.breakTimeRemaining == 0 {
                         Button {
                             DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, breakTime: breakTime, totalBreakTime: totalBreakTime, context: moc)
+                            taskSelected?.totalTimeStudied += timeStudied
+                            try? moc.save()
                             vm.end()
                         } label: {
                             ButtonView(label: "Reset")
@@ -370,6 +378,8 @@ extension HomeView {
             } else if vm.inBreak {
                 if vm.timerPaused && vm.breakTimeRemaining > 0 {
                     Button {
+                        taskSelected?.totalTimeStudied += timeStudied
+                        try? moc.save()
                         vm.end()
                     } label: {
                         ButtonView(label: "End", selectSmallerSize: true)

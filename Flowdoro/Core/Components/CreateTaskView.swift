@@ -11,6 +11,7 @@ struct CreateTaskView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var tasks: FetchedResults<Tasks>
     
     @Environment(\.dismiss) var dismiss
     
@@ -84,7 +85,11 @@ struct CreateTaskView: View {
                         Spacer()
                         
                         Button {
-                            DataController().addStats(timeStudied: timeStudied, totalTimeStudied: totalTimeStudied, breakTime: breakTime, totalBreakTime: totalBreakTime, context: moc)
+                            if taskColor != nil {
+                                DataController().addTasks(taskName: taskName, taskColor: taskColor?.description, timeStudied: 0, totalTimeStudied: 0, context: moc)
+                            } else {
+                                DataController().addTasks(taskName: taskName, timeStudied: 0, totalTimeStudied: 0, context: moc)
+                            }
                             dismiss()
                         } label: {
                             Text("Add Task")
@@ -106,6 +111,10 @@ struct CreateTaskView: View {
                     }
                     .tint(.black)
                 }
+            }
+            .onAppear {
+                taskName = ""
+                taskColor = nil
             }
         }
     }

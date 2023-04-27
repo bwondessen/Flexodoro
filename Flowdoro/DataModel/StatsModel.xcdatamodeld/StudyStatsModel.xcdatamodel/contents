@@ -14,9 +14,11 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="taskColor" optional="YES" attributeType="String"/>
         <attribute name="taskName" optional="YES" attributeType="String"/>
+        <attribute name="timeStudied" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalTimeStudied" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="Stats" positionX="-63" positionY="-18" width="128" height="134"/>
-        <element name="Tasks" positionX="-54" positionY="45" width="128" height="89"/>
+        <element name="Tasks" positionX="-54" positionY="45" width="128" height="119"/>
     </elements>
 </model>
