@@ -18,10 +18,12 @@ struct HomeView: View {
     @State private var showEditTimerPopupView: Bool = false
     @State private var showCreateTaskSheet: Bool = false
     @State private var taskName: String = ""
-    @State private var taskColor: Color = Color.blue
+    @State private var taskColor: Color? = nil
     @State private var taskCreated: Bool = false
-    @State private var taskSelected: Bool = false
+    @State private var taskSelected: Tasks?
     @State private var showAddTaskSheet: Bool = false
+    
+    @State private var taskTimes: [String: Double] = UserDefaults.standard.dictionary(forKey: "taskTimes") as? [String: Double] ?? [:]
     
     // Time studied
     var timeStudied: Double {
@@ -37,6 +39,31 @@ struct HomeView: View {
         return totalTime
     }
     
+//    // Time studied per task
+//    var totalTimeStudiedForTask: Double {
+//        //var totalTime: Double = 0
+//        for stat in stats {
+//            if taskSelected == stat {
+//                DispatchQueue.main.async {
+//                    taskTimes[taskSelected?.taskName ?? "N/A"] = (vm.focusTime - vm.focusTimeRemaining) + (vm.flowTime - vm.flowTimeRemaining)
+//                }
+//                if !taskTimes.keys.contains(taskSelected?.taskName ?? "N/A")  {
+//                    DispatchQueue.main.async {
+//                        taskTimes[taskSelected?.taskName ?? "N/A"] = taskTimes[taskSelected?.taskName ?? "N/A"]
+//                        UserDefaults.standard.set(taskTimes, forKey: "taskTimes")
+//                    }
+//                } else {
+//                    DispatchQueue.main.async {
+//                        taskTimes[taskSelected?.taskName ?? "N/A"] = taskTimes[taskSelected?.taskName ?? "N/A"]
+//                        UserDefaults.standard.set(taskTimes, forKey: "taskTimes")
+//                    }
+//                }
+//            }
+//        }
+//
+//        return taskTimes[taskSelected?.taskName ?? "N/A"] ?? 0
+//    }
+        
     // Break time
     var breakTime: Double {
         vm.breakTime - vm.breakTimeRemaining
@@ -106,6 +133,11 @@ struct HomeView: View {
 //                            }
 //                        }
 //                        .frame(height: 55)
+//                    }
+                    
+//                    if taskSelected != nil {
+//                        Text("Task Selected: \(taskSelected?.taskName ?? "N/A")")
+//                        Text("You studied \(taskSelected?.taskName ?? "N/A") for \(totalTimeStudiedForTask) secods")
 //                    }
                     
                     timerView
@@ -179,7 +211,7 @@ extension HomeView {
                     .font(.callout.italic())
             }
             .sheet(isPresented: $showAddTaskSheet) {
-                AddTaskView(taskSelected: $taskSelected)
+                SelectTaskView(taskSelected: $taskSelected)
             }
             
             Circle()

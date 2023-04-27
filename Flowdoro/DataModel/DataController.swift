@@ -11,6 +11,8 @@ import CoreData
 class DataController: ObservableObject {
     let container = NSPersistentContainer(name: "StatsModel")
     
+    @Published var savedEntities: [Stats] = []
+    
     init() {
         container.loadPersistentStores { description, error in
             if let error = error {
@@ -28,7 +30,7 @@ class DataController: ObservableObject {
         }
     }
     
-    func addStats(timeStudied: Double, totalTimeStudied: Double, breakTime: Double, totalBreakTime: Double, taskName: String? = nil, taskColor: String? = nil, context: NSManagedObjectContext) {
+    func addStats(timeStudied: Double, totalTimeStudied: Double, breakTime: Double, totalBreakTime: Double, context: NSManagedObjectContext) {
         let stats = Stats(context: context)
         stats.id = UUID()
         stats.date = Date()
@@ -37,9 +39,20 @@ class DataController: ObservableObject {
         stats.totalTimeStudied = totalTimeStudied
         stats.breakTime = breakTime
         stats.totalBreakTime = totalBreakTime
-        stats.taskName = taskName
-        stats.taskColor = taskColor
         
         save(context: context)
+    }
+    
+    func addTasks(taskName: String, taskColor: String? = nil, context: NSManagedObjectContext) {
+        let tasks = Tasks(context: context)
+        tasks.id = UUID()
+        tasks.date = Date()
+        tasks.taskName = taskName
+        tasks.taskColor = taskColor
+        
+        save(context: context)
+    }
+    
+    func updateTimeStudiedForTask(task: Stats, taskName: String, timeStudied: Double) {
     }
 }

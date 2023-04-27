@@ -30,7 +30,7 @@ class HomeViewModel: ObservableObject {
     @Published var breakSelected: Bool = false
     
     @Published var counter: Int = 0
-    
+        
 //    @Published var totalTimeStudied: Double = 0
         
 //    var totalTimeStudied: Double {

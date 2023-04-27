@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-struct AddTaskView: View {
+struct SelectTaskView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.id, order: .reverse)]) var tasks: FetchedResults<Tasks>
     
-    @Binding var taskSelected: Bool
+    @Environment(\.dismiss) var dismiss
+    
+    @Binding var taskSelected: Tasks?
     
     private let colors: [Color] = [.blue, .red, .purple, .cyan, .pink, .yellow, .orange, .teal, .green, .black, .brown, .mint, .gray, .indigo]
         
@@ -47,20 +50,36 @@ struct AddTaskView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(stats, id: \.self) { stat in
-                    if stat.taskName != nil {
-                        HStack {
-                            Circle()
-                                .foregroundColor(Color(stat.taskColor ?? "N/A"))
-                                .frame(width: 25, height: 25)
-                            Text(stat.taskName ?? "N/A")
-                                .bold()
+                ForEach(tasks) { task in
+                    if task.taskName != nil {
+                        Section {
+                            HStack {
+                                Circle()
+                                    .foregroundColor(Color(task.taskColor ?? "N/A"))
+                                    .frame(width: 15, height: 15)
+                                Text(task.taskName ?? "N/A")
+                                    .bold()
+                            }
+                        }
+                        .onTapGesture {
+                            taskSelected = task
+                            dismiss()
                         }
                     }
                 }
             }
             .navigationTitle("Tasks")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                    .tint(.black)
+                }
+            }
         }
     }
 }
