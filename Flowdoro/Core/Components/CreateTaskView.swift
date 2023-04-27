@@ -59,6 +59,13 @@ struct CreateTaskView: View {
                 Section("Task Color") {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
+                            Image(systemName: "circle")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 45))
+                                .scaleEffect(taskColor == nil ? 1.1 : 1)
+                                .onTapGesture {
+                                    taskColor = nil
+                                }
                             ForEach(colors, id: \.self) { color in
                                 Circle()
                                     .foregroundColor(color)

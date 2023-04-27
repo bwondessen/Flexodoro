@@ -12,6 +12,7 @@ struct StatsView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var tasks: FetchedResults<Tasks>
     
     
     // Time studied
@@ -60,7 +61,7 @@ struct StatsView: View {
     var totalBreakTime: Double {
         var totalTime: Double = 0
         for stat in stats {
-            totalTime += stat.timeStudied
+            totalTime += stat.breakTime
         }
         
         return totalTime
@@ -76,6 +77,19 @@ struct StatsView: View {
         
         return amount
     }
+    
+    // Task studied the most
+    var mostStudiedTask: Tasks {
+        var arr: [Tasks] = []
+        
+        for task in tasks {
+            arr.append(task)
+        }
+        
+        let mostStudied = arr.max { $0.totalTimeStudied < $1.totalTimeStudied }
+        
+        return mostStudied ?? Tasks()
+    }
         
     var body: some View {
         NavigationView {
@@ -88,17 +102,17 @@ struct StatsView: View {
                     }
                     
                     VStack {
-                        Text("Todays Cylces")
+                        Text("Total Study")
                             .font(.title.bold())
-                        Text("\(cyclesToday)")
+                        Text("\(totalTimeStudied)")
                     }
                 }
                 
                 HStack {
                     VStack {
-                        Text("Total Study")
+                        Text("Todays Cylces")
                             .font(.title.bold())
-                        Text("\(totalTimeStudied)")
+                        Text("\(cyclesToday)")
                     }
                     
                     VStack {
@@ -110,7 +124,33 @@ struct StatsView: View {
                 
                 //Text("Today: \(Calendar.current.dateComponents([.day, .month, .year], from: Date.now))")
                 
-                Text("\(breakTimeToday)")
+                HStack {
+                    VStack {
+                        Text("Todays break")
+                            .font(.title.bold())
+                        Text("\(breakTimeToday)")
+                    }
+                    
+                    VStack {
+                        Text("Total Break")
+                            .font(.title.bold())
+                        Text("\(totalBreakTime)")
+                    }
+                }
+                
+                HStack {
+                    VStack {
+                        Text("Top Task")
+                            .font(.title.bold())
+                        Text("\(mostStudiedTask.taskName ?? "N/A")")
+                    }
+                    
+                    VStack {
+                        Text("TT#")
+                            .font(.title.bold())
+                        Text("\(mostStudiedTask.totalTimeStudied ?? 0)")
+                    }
+                }
                                 
                 TabBarShadow()
             }
