@@ -13,6 +13,7 @@ struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var tasks: FetchedResults<Tasks>
     @StateObject private var delegate = NotificationDelegate()
     
     @State private var showEditTimerPopupView: Bool = false

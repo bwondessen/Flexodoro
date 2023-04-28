@@ -151,6 +151,8 @@ struct StatsView: View {
                         Text("\(mostStudiedTask.totalTimeStudied ?? 0)")
                     }
                 }
+                
+                TaskChart()
                                 
                 TabBarShadow()
             }
