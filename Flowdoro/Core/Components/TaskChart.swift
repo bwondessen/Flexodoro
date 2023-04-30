@@ -27,15 +27,19 @@ struct TaskChart: View {
         var points: [DataPoint] = []
         
         for task in tasks {
-            points.append(DataPoint(value: task.totalTimeStudied, label: LocalizedStringKey(String(task.totalTimeStudied) + " seconds"), legend: Legend(color: .gray, label: "\(task.taskName ?? "N/A")", order: 1)))
+            points.append(DataPoint(value: task.totalTimeStudied, label: LocalizedStringKey(String(task.totalTimeStudied) + " seconds"), legend: Legend(color: Color(task.taskColor ?? "gray"), label: "\(task.taskName ?? "N/A")", order: 1)))
         }
         
         return points
     }
     
     var body: some View {
-        Text("")
+        VStack {
+            Text("Top Tasks")
+            .font(.system(size: 28))
+            .fontWeight(.medium)
         HorizontalBarChartView(dataPoints: taskPoints())
+        }
     }
 }
 

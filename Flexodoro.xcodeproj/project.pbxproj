@@ -17,6 +17,8 @@
 		363C6B242908A09B0037E19F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B232908A09B0037E19F /* Double.swift */; };
 		363C6B262908B7A10037E19F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B252908B7A10037E19F /* Color.swift */; };
 		3667849129FB38BC0070D587 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3667849029FB38BC0070D587 /* SwiftUICharts */; };
+		3667849329FBA9B20070D587 /* TimerChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3667849229FBA9B20070D587 /* TimerChart.swift */; };
+		3667849629FC58C90070D587 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3667849529FC58C90070D587 /* SwiftUICharts */; };
 		367E737329F73AD3004FBB15 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E737229F73AD3004FBB15 /* CreateTaskView.swift */; };
 		367E737529F755C1004FBB15 /* SelectTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E737429F755C1004FBB15 /* SelectTaskView.swift */; };
 		367E737729FB28DF004FBB15 /* TaskChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E737629FB28DE004FBB15 /* TaskChart.swift */; };
@@ -25,6 +27,8 @@
 		36AA1DE229EE1B0800FDFAA3 /* TimeFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DE129EE1B0800FDFAA3 /* TimeFormatting.swift */; };
 		36AA1DE429EF58EE00FDFAA3 /* TabBarShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DE329EF58EE00FDFAA3 /* TabBarShadow.swift */; };
 		36AA1DE629EF596E00FDFAA3 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA1DE529EF596E00FDFAA3 /* StatsView.swift */; };
+		36BC070E29FDD66000983DC8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC070D29FDD66000983DC8 /* Date.swift */; };
+		36BC071229FDEA4500983DC8 /* TimerStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC071129FDEA4500983DC8 /* TimerStatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,7 @@
 		363C6B202907B3430037E19F /* EditTimerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimerPopupView.swift; sourceTree = "<group>"; };
 		363C6B232908A09B0037E19F /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		363C6B252908B7A10037E19F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		3667849229FBA9B20070D587 /* TimerChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerChart.swift; sourceTree = "<group>"; };
 		367E737229F73AD3004FBB15 /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		367E737429F755C1004FBB15 /* SelectTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskView.swift; sourceTree = "<group>"; };
 		367E737629FB28DE004FBB15 /* TaskChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChart.swift; sourceTree = "<group>"; };
@@ -46,6 +51,8 @@
 		36AA1DE129EE1B0800FDFAA3 /* TimeFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatting.swift; sourceTree = "<group>"; };
 		36AA1DE329EF58EE00FDFAA3 /* TabBarShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarShadow.swift; sourceTree = "<group>"; };
 		36AA1DE529EF596E00FDFAA3 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		36BC070D29FDD66000983DC8 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		36BC071129FDEA4500983DC8 /* TimerStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3667849129FB38BC0070D587 /* SwiftUICharts in Frameworks */,
+				3667849629FC58C90070D587 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +150,8 @@
 				367E737229F73AD3004FBB15 /* CreateTaskView.swift */,
 				367E737429F755C1004FBB15 /* SelectTaskView.swift */,
 				367E737629FB28DE004FBB15 /* TaskChart.swift */,
+				3667849229FBA9B20070D587 /* TimerChart.swift */,
+				36BC071129FDEA4500983DC8 /* TimerStatsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -151,6 +161,7 @@
 			children = (
 				363C6B232908A09B0037E19F /* Double.swift */,
 				363C6B252908B7A10037E19F /* Color.swift */,
+				36BC070D29FDD66000983DC8 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 			name = Flexodoro;
 			packageProductDependencies = (
 				3667849029FB38BC0070D587 /* SwiftUICharts */,
+				3667849529FC58C90070D587 /* SwiftUICharts */,
 			);
 			productName = Flexodoro;
 			productReference = 363C6B0529074D1A0037E19F /* Flowdoro.app */;
@@ -221,6 +233,7 @@
 			mainGroup = 363C6AFC29074D1A0037E19F;
 			packageReferences = (
 				3667848F29FB38BC0070D587 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				3667849429FC58C80070D587 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 363C6B0629074D1A0037E19F /* Products */;
 			projectDirPath = "";
@@ -254,14 +267,17 @@
 				363C6B1B290753590037E19F /* HomeViewModel.swift in Sources */,
 				363C6B262908B7A10037E19F /* Color.swift in Sources */,
 				363C6B212907B3430037E19F /* EditTimerPopupView.swift in Sources */,
+				36BC070E29FDD66000983DC8 /* Date.swift in Sources */,
 				36AA1DDF29EE127B00FDFAA3 /* DataController.swift in Sources */,
 				36AA1DE229EE1B0800FDFAA3 /* TimeFormatting.swift in Sources */,
 				363C6B1F2907636D0037E19F /* ButtonView.swift in Sources */,
 				36AA1DE629EF596E00FDFAA3 /* StatsView.swift in Sources */,
 				36AA1DDD29EE10F200FDFAA3 /* StatsModel.xcdatamodeld in Sources */,
+				36BC071229FDEA4500983DC8 /* TimerStatsView.swift in Sources */,
 				363C6B242908A09B0037E19F /* Double.swift in Sources */,
 				367E737729FB28DF004FBB15 /* TaskChart.swift in Sources */,
 				363C6B0929074D1A0037E19F /* Flowdoro App.swift in Sources */,
+				3667849329FBA9B20070D587 /* TimerChart.swift in Sources */,
 				367E737329F73AD3004FBB15 /* CreateTaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,12 +489,25 @@
 				minimumVersion = 0.8.2;
 			};
 		};
+		3667849429FC58C80070D587 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mecid/SwiftUICharts.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		3667849029FB38BC0070D587 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3667848F29FB38BC0070D587 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+		3667849529FC58C90070D587 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3667849429FC58C80070D587 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
