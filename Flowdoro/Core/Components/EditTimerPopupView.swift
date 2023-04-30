@@ -20,7 +20,9 @@ struct EditTimerPopupView: View {
     @State private var customButtonTapped: Bool = false
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
+            Color.clear.ignoresSafeArea()
+            
             if showEditTimerPopupView {
                 VStack(spacing: 20) {
                     Text("Select a duration")
@@ -151,12 +153,13 @@ struct EditTimerPopupView: View {
                     }
                 }
                 .padding()
-                .frame(width: UIScreen.main.bounds.width * 0.75, height: UIScreen.main.bounds.height * 0.30)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.30)
                 .background(
-                    RoundedRectangle(cornerRadius: 3)
+                    RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
-                        .shadow(radius: 2.5)
+                        .shadow(color: .gray, radius: 3.5, x: 0, y: 7.5)
                 )
+                .animation(.default)
             }
         }
     }

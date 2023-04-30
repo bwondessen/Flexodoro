@@ -86,7 +86,17 @@ struct HomeView: View {
                     HStack {
                         VStack {
                             Text("Flow")
+                                .font(.headline.bold())
                             Text(vm.flowTime.asNumberString())
+                                .font(.subheadline)
+                        }
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width * 0.20, height: UIScreen.main.bounds.height * 0.035)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.blue)
+                                .shadow(radius: 2.5)
                         }
                         .onTapGesture {
                             vm.focusSelected = false
@@ -96,7 +106,17 @@ struct HomeView: View {
                         }
                         VStack {
                             Text("Focus")
+                                .font(.headline.bold())
                             Text(vm.focusTime.asNumberString())
+                                .font(.subheadline)
+                        }
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width * 0.20, height: UIScreen.main.bounds.height * 0.035)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.blue)
+                                .shadow(radius: 2.5)
                         }
                         .onTapGesture {
                             vm.focusSelected = true
@@ -106,7 +126,17 @@ struct HomeView: View {
                         }
                         VStack {
                             Text("Break")
+                                .font(.headline.bold())
                             Text(vm.breakTime.asNumberString())
+                                .font(.subheadline)
+                        }
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width * 0.20, height: UIScreen.main.bounds.height * 0.035)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.blue)
+                                .shadow(radius: 2.5)
                         }
                         .onTapGesture {
                             vm.focusSelected = false
@@ -115,8 +145,8 @@ struct HomeView: View {
                             showEditTimerPopupView = true
                         }
                     }
+                    .padding(.top)
                     
-                    Text("total time: \(totalTimeStudied)")
 //                    Group {
 //                                                Text("focus time: \(vm.focusTime)")
 //                                                Text("focus time remaining: \(vm.focusTimeRemaining)")
@@ -141,10 +171,6 @@ struct HomeView: View {
 //                        Text("You studied \(taskSelected?.taskName ?? "N/A") for \(totalTimeStudiedForTask) secods")
 //                    }
                     
-                    Text("Task: \(taskSelected?.taskName ?? "N/A")")
-                    Text("You studied \(taskSelected?.taskName ?? "N/A")")
-                    Text("For \(taskSelected?.totalTimeStudied ?? 0) seconds")
-                    
                     timerView
                     
                     HStack {
@@ -168,12 +194,15 @@ struct HomeView: View {
                         vm.counter = 0
                     }
                 }
-                .navigationTitle("Flexodoro")
+                .navigationTitle(showEditTimerPopupView ? "" : "Flexodoro")
                 .onAppear(perform: vm.pauseTimer)
                 //            .overlay(
                 //                EditTimeView(timeSelected: $timeSelected)
                 //            )
-                EditTimerPopupView(showEditTimerPopupView: $showEditTimerPopupView)
+                
+                withAnimation {
+                    EditTimerPopupView(showEditTimerPopupView: $showEditTimerPopupView)
+                }
             }
             .onChange(of: vm.focusTimeRemaining) { _ in
                 if vm.focusTimeRemaining == 0 {
@@ -183,6 +212,23 @@ struct HomeView: View {
                     vm.counter = 0
                     if vm.inFlow {
                         vm.startTimer()
+                    }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if showEditTimerPopupView {
+                        
+                    } else {
+                        Button {
+                            showCreateTaskSheet.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.body.bold())
+                        }
+                        .sheet(isPresented: $showCreateTaskSheet) {
+                            CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated)
+                        }
                     }
                 }
             }
@@ -199,24 +245,30 @@ struct HomeView_Previews: PreviewProvider {
 extension HomeView {
     private var timerView: some View {
         VStack {
-            Button {
-                showCreateTaskSheet.toggle()
-            } label: {
-                Text("Create task")
-                    .font(.callout.italic())
-            }
-            .sheet(isPresented: $showCreateTaskSheet) {
-                CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated)
-            }
-            
-            Button {
-                showAddTaskSheet.toggle()
-            } label: {
-                Text("Select task")
-                    .font(.callout.italic())
-            }
-            .sheet(isPresented: $showAddTaskSheet) {
-                SelectTaskView(taskSelected: $taskSelected)
+            if taskSelected == nil {
+                Button {
+                    showAddTaskSheet.toggle()
+                } label: {
+                    Text("Select task")
+                        .font(.callout.italic())
+                        .padding(.top)
+                }
+                .sheet(isPresented: $showAddTaskSheet) {
+                    SelectTaskView(taskSelected: $taskSelected)
+                }
+            } else {
+                HStack {
+                    Text("\(taskSelected?.taskName ?? "N/A")")
+                        .font(.headline.bold())
+                        .padding(.top)
+                    Button {
+                        taskSelected = nil
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.callout.italic())
+                            .padding(.top)
+                    }
+                }
             }
             
             Circle()
@@ -388,6 +440,9 @@ extension HomeView {
                 }
             }
         }
+        .font(.headline.bold())
+        .shadow(radius: 1)
+        .disabled(showEditTimerPopupView)
     }
     
     func userNotification() {

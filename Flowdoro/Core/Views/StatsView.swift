@@ -109,6 +109,7 @@ struct StatsView: View {
                                     .fill(.white)
                                     .shadow(radius: 2.5)
                             }
+                            .padding(.bottom)
                         TimerChart()
                             .padding()
                             .background {
@@ -138,23 +139,31 @@ extension StatsView {
         VStack {
             HStack {
                 TimerStatsView(title: "Todays Study", value: "\(timeStudiedToday)")
+                Spacer()
                 TimerStatsView(title: "Total Study", value: "\(totalTimeStudied)")
             }
+            .padding(.horizontal)
             
             HStack {
                 TimerStatsView(title: "Todays Cycles", value: "\(cyclesToday)")
+                Spacer()
                 TimerStatsView(title: "Total Cycles", value: "\(totalCycles)")
             }
+            .padding(.horizontal)
             
             HStack {
                 TimerStatsView(title: "Todays Break", value: "\(breakTimeToday)")
+                Spacer()
                 TimerStatsView(title: "Total Break", value: "\(totalBreakTime)")
             }
+            .padding(.horizontal)
             
             HStack {
                 TimerStatsView(title: "Top Task", value: "\(mostStudiedTask.taskName ?? "N/A")")
+                Spacer()
                 TimerStatsView(title: "TT#", value: "\(timeStudiedToday)")
             }
+            .padding(.horizontal)
         }
     }
 }

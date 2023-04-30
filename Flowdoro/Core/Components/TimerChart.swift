@@ -111,15 +111,15 @@ struct TimerChart: View {
                     .font(.system(size: 28))
                     .fontWeight(.medium)
                     //.foregroundColor(Color(.white))
-                Picker(selection: $pickerSelectedItem, label: Text("")) {
-                    Text("Weekly").tag(0)
-                    Text("Monthly").tag(1)
-                    Text("Yearly").tag(2)
-                    Text("Leap Year").tag(3)
-                    Text("Weekend").tag(4)
-                }.pickerStyle(SegmentedPickerStyle())
+//                Picker(selection: $pickerSelectedItem, label: Text("")) {
+//                    Text("Weekly").tag(0)
+//                    Text("Monthly").tag(1)
+//                    Text("Yearly").tag(2)
+//                    Text("Leap Year").tag(3)
+//                    Text("Weekend").tag(4)
+//                }.pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal, 24)
-                HStack(alignment: .bottom, spacing: 8) {
+                HStack(alignment: .bottom, spacing: 20) {
                     BarView(value: timeStudiedThisWeek[0], week: "Sun")
                     BarView(value: timeStudiedThisWeek[1], week: "Mon")
                     BarView(value: timeStudiedThisWeek[2], week: "Tue")

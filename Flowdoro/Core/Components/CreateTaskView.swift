@@ -102,13 +102,15 @@ struct CreateTaskView: View {
                             Text("Add Task")
                         }
                         .buttonStyle(.borderedProminent)
-                        .disabled(taskName.isEmpty || taskColor == nil)
+                        .disabled(taskName.isEmpty)
                         
                         Spacer()
                     }
                 }
                 .listRowBackground(opacity(0))
             }
+            .navigationBarTitle("Create Task")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     Button {
