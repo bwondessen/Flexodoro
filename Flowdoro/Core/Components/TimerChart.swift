@@ -90,14 +90,43 @@ struct TimerChart: View {
 //            }
 //        }
         
-        for day in weekDays {
-            var amount: Double = 0
+        for i in 0..<weekDays.count {
+            var sunday: Double = 0
+            var monday: Double = 0
+            var tuesday: Double = 0
+            var wednesday: Double = 0
+            var thursday: Double = 0
+            var friday: Double = 0
+            var saturday: Double = 0
+
             for stat in stats {
-                if Date.isSameDay(date1: stat.date ?? Date(), date2: day) {
-                    amount += stat.timeStudied
+                if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[0]) {
+                    sunday += stat.timeStudied
+                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[1]) {
+                    monday += stat.timeStudied
+                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[2]) {
+                    tuesday += stat.timeStudied
+                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[3]) {
+                    wednesday += stat.timeStudied
+                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[6]) {
+                    thursday += stat.timeStudied
+                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[4]) {
+                    friday += stat.timeStudied
+                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[5]) {
+                    saturday += stat.timeStudied
                 }
             }
-            studyTimeThisWeek.append(amount)
+            
+            studyTimeThisWeek.append(sunday)
+            studyTimeThisWeek.append(monday)
+            studyTimeThisWeek.append(tuesday)
+            studyTimeThisWeek.append(wednesday)
+            studyTimeThisWeek.append(thursday)
+            studyTimeThisWeek.append(friday)
+            studyTimeThisWeek.append(saturday)
+            
+//            let nextDayIndex = studyTimeThisWeek.index(after: Int(amount))
+//            studyTimeThisWeek[nextDayIndex] = 0
         }
         
         return studyTimeThisWeek
@@ -107,6 +136,8 @@ struct TimerChart: View {
         ZStack {
             //Color(.orange).edgesIgnoringSafeArea(.all)
             VStack {
+                Text("Today: \(Date.monday(using: Calendar.current))")
+                Text("Tuesday: \(Date.tuesday(using: Calendar.current))")
                 Text("Trends")
                     .font(.system(size: 28))
                     .fontWeight(.medium)
@@ -142,13 +173,13 @@ extension TimerChart {
             VStack {
                 ZStack(alignment: .bottom) {
                     Group {
-                        Capsule().frame(width: 30, height: value)
-                        Capsule().frame(width: 30, height: value)
-                        Capsule().frame(width: 30, height: value)
-                        Capsule().frame(width: 30, height: value)
-                        Capsule().frame(width: 30, height: value)
-                        Capsule().frame(width: 30, height: value)
-                        Capsule().frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
                     }
                     .foregroundColor(.blue)
                 }

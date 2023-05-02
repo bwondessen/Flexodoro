@@ -24,37 +24,38 @@ extension Date {
     
     static func tuesday(using calendar: Calendar) -> Date {
         let sunday = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: Date()).date!
-        let monday = calendar.date(byAdding: .day, value: 2, to: sunday)!
+        let tuesday = calendar.date(byAdding: .day, value: 2, to: sunday)!
         
-        return monday
+        return tuesday
     }
+    
     
     static func wednesday(using calendar: Calendar) -> Date {
         let sunday = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: Date()).date!
-        let monday = calendar.date(byAdding: .day, value: 3, to: sunday)!
+        let wednesday = calendar.date(byAdding: .day, value: 3, to: sunday)!
         
-        return monday
+        return wednesday
     }
     
     static func thursday(using calendar: Calendar) -> Date {
         let sunday = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: Date()).date!
-        let monday = calendar.date(byAdding: .day, value: 4, to: sunday)!
+        let thursday = calendar.date(byAdding: .day, value: 4, to: sunday)!
         
-        return monday
+        return thursday
     }
     
     static func friday(using calendar: Calendar) -> Date {
         let sunday = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: Date()).date!
-        let monday = calendar.date(byAdding: .day, value: 5, to: sunday)!
+        let friday = calendar.date(byAdding: .day, value: 5, to: sunday)!
         
-        return monday
+        return friday
     }
     
     static func saturday(using calendar: Calendar) -> Date {
         let sunday = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: Date()).date!
-        let monday = calendar.date(byAdding: .day, value: 6, to: sunday)!
+        let saturday = calendar.date(byAdding: .day, value: 6, to: sunday)!
         
-        return monday
+        return saturday
     }
     
     static func isSameDay(date1: Date, date2: Date) -> Bool {
@@ -64,5 +65,11 @@ extension Date {
         } else {
             return false
         }
+        
+//        if Calendar.current.dateComponents([.day, .month, .year], from: date1) == Calendar.current.dateComponents([.day, .month, .year], from: date2) {
+//            return true
+//        } else {
+//            return false
+//        }
     }
 }
