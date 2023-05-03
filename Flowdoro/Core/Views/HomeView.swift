@@ -24,6 +24,8 @@ struct HomeView: View {
     @State private var taskSelected: Tasks?
     @State private var showAddTaskSheet: Bool = false
     
+    @State private var selectedTime: Double = 1
+    
     @State private var taskTimes: [String: Double] = UserDefaults.standard.dictionary(forKey: "taskTimes") as? [String: Double] ?? [:]
     
     // Time studied
@@ -175,6 +177,7 @@ struct HomeView: View {
                     
                     HStack {
                         focusButton
+                            .padding(.bottom)
                     }
                     .onChange(of: vm.breakTimeRemaining) { _ in
                         if vm.breakTimeRemaining == 0 {
@@ -183,7 +186,7 @@ struct HomeView: View {
                         }
                     }
                     
-                    TabBarShadow()
+                    //TabBarShadow()
                 }
                 .onChange(of: vm.flowTimeRemaining) { _ in
                     if vm.flowTimeRemaining == 0 {

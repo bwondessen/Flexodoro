@@ -153,7 +153,7 @@ extension SignUp {
             NavigationLink {
                 Login()
             } label: {
-                Text("Log in")
+                Text("Login")
                     .font(.subheadline.bold())
                     .foregroundColor(.blue)
             }

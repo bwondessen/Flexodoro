@@ -11,8 +11,8 @@ struct EditTimerPopupView: View {
     @EnvironmentObject private var vm: HomeViewModel
     
     @Binding var showEditTimerPopupView: Bool
-    @State private var showPicker: Bool = false
-    @State private var selectedTime: Double = 0
+    @State private var selectedTime: Double = 5
+    @State private var pickerNumber: Double = 5
     
     @State private var buttonOneTapped: Bool = false
     @State private var buttonTwoTapped: Bool = false
@@ -24,7 +24,7 @@ struct EditTimerPopupView: View {
             Color.clear.ignoresSafeArea()
             
             if showEditTimerPopupView {
-                VStack(spacing: 20) {
+                VStack(spacing: 5) {
                     Text("Select a duration")
                         .font(.title3)
                         .fontWeight(.semibold)
@@ -34,10 +34,10 @@ struct EditTimerPopupView: View {
                     HStack {
                         Spacer()
                         Text("15:00")
-                            .padding(5)
+                            .padding()
                             .foregroundColor(buttonOneTapped ? .white : .primary)
                             .background(
-                                RoundedRectangle(cornerRadius: 3)
+                                RoundedRectangle(cornerRadius: 10)
                                     .fill(buttonOneTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
@@ -45,14 +45,13 @@ struct EditTimerPopupView: View {
                                 buttonOneTapped = true
                                 buttonTwoTapped = false
                                 buttonThreeTapped = false
-                                customButtonTapped = false
                             }
                         Spacer()
                         Text("30:00")
-                            .padding(5)
+                            .padding()
                             .foregroundColor(buttonTwoTapped ? .white : .primary)
                             .background(
-                                RoundedRectangle(cornerRadius: 3)
+                                RoundedRectangle(cornerRadius: 10)
                                     .fill(buttonTwoTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
@@ -60,14 +59,13 @@ struct EditTimerPopupView: View {
                                 buttonOneTapped = false
                                 buttonTwoTapped = true
                                 buttonThreeTapped = false
-                                customButtonTapped = false
                             }
                         Spacer()
                         Text("45:00")
-                            .padding(5)
+                            .padding()
                             .foregroundColor(buttonThreeTapped ? .white : .primary)
                             .background(
-                                RoundedRectangle(cornerRadius: 3)
+                                RoundedRectangle(cornerRadius: 10)
                                     .fill(buttonThreeTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
@@ -75,7 +73,6 @@ struct EditTimerPopupView: View {
                                 buttonOneTapped = false
                                 buttonTwoTapped = false
                                 buttonThreeTapped = true
-                                customButtonTapped = false
                             }
                         Spacer()
                     }
@@ -84,34 +81,29 @@ struct EditTimerPopupView: View {
                     Spacer()
                     
                     VStack {
-                        Text("Custom")
-                            .font(.footnote)
-                            .foregroundColor(customButtonTapped ? .white : .primary)
-                            .padding(5)
-                            .background(
-                                RoundedRectangle(cornerRadius: 3)
-                                    .fill(customButtonTapped ? Color.theme.accent : Color.theme.buttonBackground)
-                            )
-                        if showPicker {
+//                        Text("Custom")
+//                            .font(.footnote)
+//                            .foregroundColor(customButtonTapped ? .white : .primary)
+//                            .padding()
+//                            .background(
+//                                RoundedRectangle(cornerRadius: 10)
+//                                    .fill(customButtonTapped ? Color.theme.accent : Color.theme.buttonBackground)
+//                            )
+                        VStack {
                             HStack {
-                                ForEach(1..<11) { num in
-                                    Spacer()
-                                    Text("\(num)")
-                                        .font(.subheadline)
-                                        .onTapGesture {
-                                            selectedTime = Double(num)
-                                        }
-                                    Spacer()
-                                }
+                                Spacer()
+                                Text("\(selectedTime)")
+                                    .font(.subheadline.bold())
                             }
+                            Slider(value: $selectedTime, in: 1...100)
+                                .onChange(of: selectedTime) { newValue in
+                                    if selectedTime != 15 && selectedTime != 30 && selectedTime != 45 {
+                                        buttonOneTapped = false
+                                        buttonTwoTapped = false
+                                        buttonThreeTapped = false
+                                    }
+                                }
                         }
-                    }
-                    .onTapGesture {
-                        showPicker = true
-                        buttonOneTapped = false
-                        buttonTwoTapped = false
-                        buttonThreeTapped = false
-                        customButtonTapped = true
                     }
                     
                     Spacer()
@@ -121,14 +113,15 @@ struct EditTimerPopupView: View {
                             buttonOneTapped = false
                             buttonTwoTapped = false
                             buttonThreeTapped = false
-                            customButtonTapped = false
                             showEditTimerPopupView = false
                         } label: {
                             Text("Cancel")
                                 .font(.footnote)
-                                .padding(5)
+                                .fontWeight(.heavy)
+                                .padding()
+                                .padding(.horizontal)
                                 .background(
-                                    RoundedRectangle(cornerRadius: 3)
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(Color.theme.buttonBackground)
                                 )
                         }
@@ -138,38 +131,110 @@ struct EditTimerPopupView: View {
                             buttonOneTapped = false
                             buttonTwoTapped = false
                             buttonThreeTapped = false
-                            customButtonTapped = false
                             editTimer()
                             showEditTimerPopupView = false
                         } label: {
                             Text("Confirm")
                                 .font(.footnote)
-                                .padding(3)
+                                .fontWeight(.heavy)
+                                .padding()
+                                .padding(.horizontal)
                                 .background(
-                                    RoundedRectangle(cornerRadius: 3)
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(Color.theme.buttonBackground)
                                 )
                         }
                     }
                 }
                 .padding()
+                .padding(.bottom)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.30)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
                         .shadow(color: .gray, radius: 3.5, x: 0, y: 7.5)
                 )
-                .animation(.default)
+                //                .overlay(
+                //                    showPicker ?
+                //                    VStack {
+                //                        RoundedRectangle(cornerRadius: 20)
+                //                            .fill(.white)
+                //                        VStack {
+                //                            Group {
+                //                            //Text("Select a duration")
+                //                                Text("selected time: \(selectedTime)")
+                //                                .font(.title3)
+                //                                .fontWeight(.semibold)
+                //
+                //                            Picker("picker", selection: $selectedTime) {
+                //                                ForEach(1...100, id: \.self) { num in
+                //                                    Text("\(num)")
+                //                                }
+                //                            }
+                //                            .pickerStyle(.wheel)
+                //                            }
+                //                            HStack {
+                //                                Button {
+                //                                    buttonOneTapped = false
+                //                                    buttonTwoTapped = false
+                //                                    buttonThreeTapped = false
+                //                                    customButtonTapped = false
+                //                                    //showEditTimerPopupView = false
+                //                                    showPicker = false
+                //                                } label: {
+                //                                    Text("Cancel")
+                //                                        .font(.footnote)
+                //                                        .padding()
+                //                                        .padding(.horizontal)
+                //                                        .background(
+                //                                            RoundedRectangle(cornerRadius: 10)
+                //                                                .fill(Color.theme.buttonBackground)
+                //                                        )
+                //                                }
+                //                                .padding(.trailing)
+                //
+                //                                Button {
+                //                                    buttonOneTapped = false
+                //                                    buttonTwoTapped = false
+                //                                    buttonThreeTapped = false
+                //                                    customButtonTapped = false
+                //                                    editTimer()
+                //                                    //selectedTime = 50
+                //                                    showEditTimerPopupView = false
+                //                                    showPicker = false
+                //                                } label: {
+                //                                    Text("Confirm")
+                //                                        .font(.footnote)
+                //                                        .padding()
+                //                                        .padding(.horizontal)
+                //                                        .background(
+                //                                            RoundedRectangle(cornerRadius: 10)
+                //                                                .fill(Color.theme.buttonBackground)
+                //                                        )
+                //                                }
+                //                            }
+                //                        }
+                //                        .padding()
+                //                        .background(
+                //                            RoundedRectangle(cornerRadius: 20)
+                //                                .fill(Color.white)
+                //                                .shadow(color: .gray, radius: 3.5, x: 0, y: 7.5)
+                //                        )
+                //                    }
+                //                    :
+                //                        nil
+                //                )
+                //.animation(.default)
             }
         }
     }
 }
 
-struct EditTimeView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditTimerPopupView(showEditTimerPopupView: .constant(false))
-    }
-}
+//struct EditTimeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditTimerPopupView(showEditTimerPopupView: .constant(false))
+//    }
+//}
 
 extension EditTimerPopupView {
     private var pickerView: some View {

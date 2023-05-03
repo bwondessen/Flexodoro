@@ -71,8 +71,8 @@ extension Login {
     var login: some View {
         VStack {
             Group {
-                TextField("Username", text: $vm.userName)
-                SecureField("Password", text: $vm.password)
+                TextField("Username", text: $enteredUserName)
+                SecureField("Password", text: $enteredPassword)
             }
             .disableAutocorrection(true)
             .padding()

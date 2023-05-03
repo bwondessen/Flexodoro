@@ -26,6 +26,11 @@
 		367124732A0095AE0044ADC4 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367124722A0095AE0044ADC4 /* Login.swift */; };
 		367124752A0096D80044ADC4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367124742A0096D80044ADC4 /* User.swift */; };
 		367124772A00F2880044ADC4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367124762A00F2880044ADC4 /* MainView.swift */; };
+		3671247A2A01ACDB0044ADC4 /* EditAcountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367124792A01ACDB0044ADC4 /* EditAcountView.swift */; };
+		3671247C2A01AD8F0044ADC4 /* ChangeUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671247B2A01AD8F0044ADC4 /* ChangeUsernameView.swift */; };
+		3671247E2A01ADEE0044ADC4 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671247D2A01ADEE0044ADC4 /* ChangePasswordView.swift */; };
+		367124802A01AF8A0044ADC4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671247F2A01AF8A0044ADC4 /* SettingsView.swift */; };
+		367124822A01AFF10044ADC4 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367124812A01AFF10044ADC4 /* InfoView.swift */; };
 		367E737329F73AD3004FBB15 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E737229F73AD3004FBB15 /* CreateTaskView.swift */; };
 		367E737529F755C1004FBB15 /* SelectTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E737429F755C1004FBB15 /* SelectTaskView.swift */; };
 		367E737729FB28DF004FBB15 /* TaskChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E737629FB28DE004FBB15 /* TaskChart.swift */; };
@@ -55,6 +60,11 @@
 		367124722A0095AE0044ADC4 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		367124742A0096D80044ADC4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		367124762A00F2880044ADC4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		367124792A01ACDB0044ADC4 /* EditAcountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAcountView.swift; sourceTree = "<group>"; };
+		3671247B2A01AD8F0044ADC4 /* ChangeUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsernameView.swift; sourceTree = "<group>"; };
+		3671247D2A01ADEE0044ADC4 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		3671247F2A01AF8A0044ADC4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		367124812A01AFF10044ADC4 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		367E737229F73AD3004FBB15 /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		367E737429F755C1004FBB15 /* SelectTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskView.swift; sourceTree = "<group>"; };
 		367E737629FB28DE004FBB15 /* TaskChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChart.swift; sourceTree = "<group>"; };
@@ -138,6 +148,8 @@
 				36AA1DE529EF596E00FDFAA3 /* StatsView.swift */,
 				367124702A00956B0044ADC4 /* SignUp.swift */,
 				367124722A0095AE0044ADC4 /* Login.swift */,
+				3671247F2A01AF8A0044ADC4 /* SettingsView.swift */,
+				367124782A01AC840044ADC4 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +195,17 @@
 				36BC070D29FDD66000983DC8 /* Date.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		367124782A01AC840044ADC4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				367124812A01AFF10044ADC4 /* InfoView.swift */,
+				367124792A01ACDB0044ADC4 /* EditAcountView.swift */,
+				3671247B2A01AD8F0044ADC4 /* ChangeUsernameView.swift */,
+				3671247D2A01ADEE0044ADC4 /* ChangePasswordView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		36AA1DDA29EE10A700FDFAA3 /* DataModel */ = {
@@ -288,12 +311,16 @@
 				367E737529F755C1004FBB15 /* SelectTaskView.swift in Sources */,
 				363C6B0B29074D1A0037E19F /* HomeView.swift in Sources */,
 				363C6B1B290753590037E19F /* HomeViewModel.swift in Sources */,
+				3671247C2A01AD8F0044ADC4 /* ChangeUsernameView.swift in Sources */,
 				363C6B262908B7A10037E19F /* Color.swift in Sources */,
 				363C6B212907B3430037E19F /* EditTimerPopupView.swift in Sources */,
+				367124822A01AFF10044ADC4 /* InfoView.swift in Sources */,
 				36BC070E29FDD66000983DC8 /* Date.swift in Sources */,
 				367124772A00F2880044ADC4 /* MainView.swift in Sources */,
 				36AA1DDF29EE127B00FDFAA3 /* DataController.swift in Sources */,
+				3671247A2A01ACDB0044ADC4 /* EditAcountView.swift in Sources */,
 				36AA1DE229EE1B0800FDFAA3 /* TimeFormatting.swift in Sources */,
+				3671247E2A01ADEE0044ADC4 /* ChangePasswordView.swift in Sources */,
 				363C6B1F2907636D0037E19F /* ButtonView.swift in Sources */,
 				36AA1DE629EF596E00FDFAA3 /* StatsView.swift in Sources */,
 				367124732A0095AE0044ADC4 /* Login.swift in Sources */,
@@ -306,6 +333,7 @@
 				3667849329FBA9B20070D587 /* TimerChart.swift in Sources */,
 				367E737329F73AD3004FBB15 /* CreateTaskView.swift in Sources */,
 				367124752A0096D80044ADC4 /* User.swift in Sources */,
+				367124802A01AF8A0044ADC4 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +470,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,6 +500,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

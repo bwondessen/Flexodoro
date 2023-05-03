@@ -90,7 +90,7 @@ struct TimerChart: View {
 //            }
 //        }
         
-        for i in 0..<weekDays.count {
+        for _ in 0..<weekDays.count {
             var sunday: Double = 0
             var monday: Double = 0
             var tuesday: Double = 0
@@ -136,8 +136,6 @@ struct TimerChart: View {
         ZStack {
             //Color(.orange).edgesIgnoringSafeArea(.all)
             VStack {
-                Text("Today: \(Date.monday(using: Calendar.current))")
-                Text("Tuesday: \(Date.tuesday(using: Calendar.current))")
                 Text("Trends")
                     .font(.system(size: 28))
                     .fontWeight(.medium)
@@ -159,7 +157,7 @@ struct TimerChart: View {
                     BarView(value: timeStudiedThisWeek[5], week: "Fr")
                     BarView(value: timeStudiedThisWeek[6], week: "Sat")
                 }.padding(.top, 24)
-                    .animation(.default)
+                    //.animation(.default)
             }
         }
     }

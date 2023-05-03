@@ -37,12 +37,13 @@ extension MainView {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
-                    Label("Timer", systemImage: "deskclock")
+                    Image(systemName: "deskclock")
                 }
                 .tag("homeView")
+            
             StatsView()
                 .tabItem {
-                    Label("Stats", systemImage: "chart.bar")
+                    Image(systemName: "chart.bar")
                 }
                 .tag("statsView")
         }

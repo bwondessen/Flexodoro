@@ -14,6 +14,8 @@ struct StatsView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var stats: FetchedResults<Stats>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var tasks: FetchedResults<Tasks>
     
+    @State private var showSettings: Bool = false
+    
     
     // Time studied
     var totalTimeStudied: Double {
@@ -120,10 +122,23 @@ struct StatsView: View {
                     }
                     .padding()
                     
-                    TabBarShadow()
+                    //TabBarShadow()
                 }
             }
             .navigationTitle("Stats")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showSettings.toggle()
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                    }
+                    .sheet(isPresented: $showSettings) {
+                        SettingsView()
+                    }
+                    .tint(.black)
+                }
+            }
         }
     }
 }
@@ -155,13 +170,6 @@ extension StatsView {
                 TimerStatsView(title: "Todays Break", value: "\(breakTimeToday)")
                 Spacer()
                 TimerStatsView(title: "Total Break", value: "\(totalBreakTime)")
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                TimerStatsView(title: "Top Task", value: "\(mostStudiedTask.taskName ?? "N/A")")
-                Spacer()
-                TimerStatsView(title: "TT#", value: "\(timeStudiedToday)")
             }
             .padding(.horizontal)
         }
