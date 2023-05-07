@@ -23,7 +23,7 @@ struct ButtonView: View {
                 Text(label)
                     .foregroundColor(.white)
             )
-            .frame(width: selectSmallerSize ? 80 : 120, height: selectSmallerSize ? 80 : 120)
+            .frame(width: selectSmallerSize ? 75 : 110, height: selectSmallerSize ? 75 : 110)
     }
 }
 

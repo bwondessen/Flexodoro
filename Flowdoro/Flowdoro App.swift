@@ -6,33 +6,33 @@
 //
 
 import SwiftUI
-import Firebase
+//import Firebase
 
 @main
 struct FlexodoroApp: App {
     @StateObject private var vm = HomeViewModel()
     @StateObject private var dataController = DataController()
     
-    init() {
-        FirebaseApp.configure()
-    }
+//    init() {
+//        FirebaseApp.configure()
+//    }
     
     var body: some Scene {
         WindowGroup {
-            //TabView {
-                MainView()
+            TabView {
+                HomeView()
                     .environmentObject(vm)
                     .environment(\.managedObjectContext, dataController.container.viewContext)
-                    //.tabItem {
-                      //  Label("Timer", systemImage: "deskclock")
-                    //}
-//                StatsView()
-//                    .environmentObject(vm)
-//                    .environment(\.managedObjectContext, dataController.container.viewContext)
-//                    .tabItem {
-//                        Label("Stats", systemImage: "chart.bar")
-//                    }
-            //}
+                    .tabItem {
+                        Image(systemName: "deskclock")
+                    }
+                StatsView()
+                    .environmentObject(vm)
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
+                    .tabItem {
+                        Image(systemName: "chart.bar")
+                    }
+            }
         }
     }
 }

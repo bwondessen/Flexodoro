@@ -25,8 +25,10 @@ struct HomeView: View {
     @State private var showAddTaskSheet: Bool = false
     
     @State private var selectedTime: Double = 1
-    
+        
     @State private var taskTimes: [String: Double] = UserDefaults.standard.dictionary(forKey: "taskTimes") as? [String: Double] ?? [:]
+    
+    @State private var includeXMark: Bool = true
     
     // Time studied
     var timeStudied: Double {
@@ -89,16 +91,20 @@ struct HomeView: View {
                         VStack {
                             Text("Flow")
                                 .font(.headline.bold())
-                            Text(vm.flowTime.asNumberString())
+                            Text(vm.flowTime.asString(style: .abbreviated))
                                 .font(.subheadline)
                         }
                         .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width * 0.20, height: UIScreen.main.bounds.height * 0.035)
+                        .frame(width: UIScreen.main.bounds.width * 0.18, height: UIScreen.main.bounds.height * 0.025)
+                        .scaleEffect(vm.inFlow ? 1.1 : 1)
                         .padding()
                         .background {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(.blue)
-                                .shadow(radius: 2.5)
+                                .stroke(.black, lineWidth: vm.inFlow ? 3.5 : 0)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(.blue)
+                                }
                         }
                         .onTapGesture {
                             vm.focusSelected = false
@@ -109,17 +115,22 @@ struct HomeView: View {
                         VStack {
                             Text("Focus")
                                 .font(.headline.bold())
-                            Text(vm.focusTime.asNumberString())
+                            Text(vm.focusTime.asString(style: .abbreviated))
                                 .font(.subheadline)
                         }
                         .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width * 0.20, height: UIScreen.main.bounds.height * 0.035)
+                        .frame(width: UIScreen.main.bounds.width * 0.18, height: UIScreen.main.bounds.height * 0.025)
                         .padding()
                         .background {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(.blue)
-                                .shadow(radius: 2.5)
+                                .stroke(.black, lineWidth: vm.inFocus ? 3.5 : 0)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(.blue)
+                                }
+                                //.shadow(radius: 2.5)
                         }
+                        .padding(.horizontal)
                         .onTapGesture {
                             vm.focusSelected = true
                             vm.flowSelected = false
@@ -129,16 +140,20 @@ struct HomeView: View {
                         VStack {
                             Text("Break")
                                 .font(.headline.bold())
-                            Text(vm.breakTime.asNumberString())
+                            Text(vm.breakTime.asString(style: .abbreviated))
                                 .font(.subheadline)
                         }
                         .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width * 0.20, height: UIScreen.main.bounds.height * 0.035)
+                        .frame(width: UIScreen.main.bounds.width * 0.18, height: UIScreen.main.bounds.height * 0.025)
+                        .scaleEffect(vm.inBreak ? 1.1 : 1)
                         .padding()
                         .background {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(.blue)
-                                .shadow(radius: 2.5)
+                                .stroke(.black, lineWidth: vm.inBreak ? 3.5 : 0)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(.blue)
+                                }
                         }
                         .onTapGesture {
                             vm.focusSelected = false
@@ -148,6 +163,7 @@ struct HomeView: View {
                         }
                     }
                     .padding(.top)
+                    .padding()
                     
 //                    Group {
 //                                                Text("focus time: \(vm.focusTime)")
@@ -230,7 +246,7 @@ struct HomeView: View {
                                 .font(.body.bold())
                         }
                         .sheet(isPresented: $showCreateTaskSheet) {
-                            CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated)
+                            CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated, includeXMark: $includeXMark)
                         }
                     }
                 }
@@ -276,14 +292,14 @@ extension HomeView {
             
             Circle()
                 .stroke(Color.theme.buttonBackground, lineWidth: 15)
-                .frame(width: UIScreen.main.bounds.width * 0.80, height: UIScreen.main.bounds.height * 0.45)
+                .frame(width: UIScreen.main.bounds.width * 0.80, height: UIScreen.main.bounds.height * 0.43)
                 .overlay(
                     ZStack {
                         Circle()
                             .trim(from: 0, to: vm.timeRemainingInPercent())
                             .stroke(Color.theme.accent, lineWidth: 15)
                             .rotationEffect(.degrees(-90))
-                        Text(vm.inFocus ? "\(vm.focusTimeRemaining.asNumberString())" : (vm.inFlow ? "\(vm.flowTimeRemaining.asNumberString())" : "\(vm.breakTimeRemaining.asNumberString())"))
+                        Text(vm.inFocus ? "\(vm.focusTimeRemaining.asString(style: .positional))" : (vm.inFlow ? "\(vm.flowTimeRemaining.asString(style: .positional))" : "\(vm.breakTimeRemaining.asString(style: .positional))"))
                             .font(.title.bold())
                             .onReceive(vm.timer) { _ in
                                 if vm.inFocus {

@@ -108,11 +108,11 @@ struct TimerChart: View {
                     tuesday += stat.timeStudied
                 } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[3]) {
                     wednesday += stat.timeStudied
-                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[6]) {
-                    thursday += stat.timeStudied
                 } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[4]) {
-                    friday += stat.timeStudied
+                    thursday += stat.timeStudied
                 } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[5]) {
+                    friday += stat.timeStudied
+                } else if Date.isSameDay(date1: stat.date ?? Date(), date2: weekDays[6]) {
                     saturday += stat.timeStudied
                 }
             }
@@ -132,6 +132,16 @@ struct TimerChart: View {
         return studyTimeThisWeek
     }
     
+    var totalStudyThisWeek: Double {
+        var total: Double = 0
+        
+        for time in timeStudiedThisWeek {
+            total += time
+        }
+        
+        return total
+    }
+    
     var body: some View {
         ZStack {
             //Color(.orange).edgesIgnoringSafeArea(.all)
@@ -149,17 +159,130 @@ struct TimerChart: View {
 //                }.pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal, 24)
                 HStack(alignment: .bottom, spacing: 20) {
-                    BarView(value: timeStudiedThisWeek[0], week: "Sun")
-                    BarView(value: timeStudiedThisWeek[1], week: "Mon")
-                    BarView(value: timeStudiedThisWeek[2], week: "Tue")
-                    BarView(value: timeStudiedThisWeek[3], week: "Wed")
-                    BarView(value: timeStudiedThisWeek[4], week: "Thur")
-                    BarView(value: timeStudiedThisWeek[5], week: "Fr")
-                    BarView(value: timeStudiedThisWeek[6], week: "Sat")
+//                    BarView(value: timeStudiedThisWeek[0], week: "Sun")
+//                    BarView(value: timeStudiedThisWeek[1], week: "Mon")
+//                    BarView(value: timeStudiedThisWeek[2], week: "Tue")
+//                    BarView(value: timeStudiedThisWeek[3], week: "Wed")
+//                    BarView(value: timeStudiedThisWeek[4], week: "Thur")
+//                    BarView(value: timeStudiedThisWeek[5], week: "Fri")
+//                    BarView(value: timeStudiedThisWeek[6], week: "Sat")
+                    
+                    BarView(value: sundayValue(), week: "Sun")
+                    BarView(value: mondayValue(), week: "Mon")
+                    BarView(value: tuesdayValue(), week: "Tue")
+                    BarView(value: wednesdayValue(), week: "Wed")
+                    BarView(value: thursdayValue(), week: "Thur")
+                    BarView(value: fridayValue(), week: "Fr")
+                    BarView(value: saturdayValue(), week: "Sat")
                 }.padding(.top, 24)
                     //.animation(.default)
             }
         }
+    }
+    
+    func sundayValue() -> Double {
+        let studyTime = timeStudiedThisWeek[0]
+        var totalStudyTime: Double = 0
+
+        for num in 0...6 {
+            totalStudyTime += timeStudiedThisWeek[num]
+        }
+
+        let studyPercentage = studyTime / totalStudyTime
+
+        let value = studyPercentage * 300
+
+        return value
+    }
+
+    func mondayValue() -> Double {
+        let studyTime = timeStudiedThisWeek[1]
+        var totalStudyTime: Double = 0
+
+        for num in 0...6 {
+            totalStudyTime += timeStudiedThisWeek[num]
+        }
+
+        let studyPercentage = studyTime / totalStudyTime
+
+        let value = studyPercentage * 300
+
+        return value
+    }
+
+    func tuesdayValue() -> Double {
+        let studyTime = timeStudiedThisWeek[2]
+        var totalStudyTime: Double = 0
+
+        for num in 0...6 {
+            totalStudyTime += timeStudiedThisWeek[num]
+        }
+
+        let studyPercentage = studyTime / totalStudyTime
+
+        let value = studyPercentage * 300
+
+        return value
+    }
+
+    func wednesdayValue() -> Double {
+        let studyTime = timeStudiedThisWeek[3]
+        var totalStudyTime: Double = 0
+
+        for num in 0...6 {
+            totalStudyTime += timeStudiedThisWeek[num]
+        }
+
+        let studyPercentage = studyTime / totalStudyTime
+
+        let value = studyPercentage * 300
+
+        return value
+    }
+
+    func thursdayValue() -> Double {
+        let studyTime = timeStudiedThisWeek[4]
+        var totalStudyTime: Double = 0
+
+        for num in 0...6 {
+            totalStudyTime += timeStudiedThisWeek[num]
+        }
+
+        let studyPercentage = studyTime / totalStudyTime
+
+        let value = studyPercentage * 300
+
+        return value
+    }
+
+    func fridayValue() -> Double {
+        let studyTime = timeStudiedThisWeek[5]
+        var totalStudyTime: Double = 0
+
+        for num in 0...6 {
+            totalStudyTime += timeStudiedThisWeek[num]
+        }
+
+        let studyPercentage = studyTime / totalStudyTime
+
+        let value = studyPercentage * 300
+
+        return value
+    }
+
+    func saturdayValue() -> Double {
+        let studyTime = timeStudiedThisWeek[6]
+        var totalStudyTime: Double = 0
+
+        for num in 0...6 {
+            totalStudyTime += timeStudiedThisWeek[num]
+        }
+
+        let studyPercentage = studyTime / totalStudyTime
+
+        let value = studyPercentage * 300
+
+        return value
     }
 }
 
@@ -171,17 +294,19 @@ extension TimerChart {
             VStack {
                 ZStack(alignment: .bottom) {
                     Group {
-                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
-                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
-                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
-                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
-                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
-                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
-                        RoundedRectangle(cornerRadius: 10).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 7.5).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 7.5).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 7.5).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 7.5).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 7.5).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 7.5).frame(width: 30, height: value)
+                        RoundedRectangle(cornerRadius: 7.5).frame(width: 30, height: value)
                     }
                     .foregroundColor(.blue)
                 }
                 Text(week)
+                    .font(.caption.bold())
+                    .lineLimit(1)
             }
         }
     }

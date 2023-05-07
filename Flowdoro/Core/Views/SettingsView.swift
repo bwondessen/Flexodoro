@@ -12,6 +12,10 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     //@State var alternativeTheme: Bool
     
+    @State private var taskName: String = ""
+    @State private var taskColor: Color? = nil
+    @State private var taskCreated: Bool = false
+    
     @State private var showLogOutAlert: Bool = false
     
     @AppStorage("faceIDEnabled") private var faceIDEnabled: Bool = false
@@ -25,17 +29,22 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    accountSection
+                    createTaskSection
                 }
+                
+                
+//                Section {
+//                    accountSection
+//                }
                 
 //                Section {
 //                    securitySection
 //                }
                 
-                Section {
-                    logOutSection
-                        .listRowBackground(Color.clear)
-                }
+//                Section {
+//                    logOutSection
+//                        .listRowBackground(Color.clear)
+//                }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
@@ -52,12 +61,13 @@ struct SettingsView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .alert("Confirm log out", isPresented: $showLogOutAlert) {
-            Button("Cancel", role: .cancel) { }
-            Button("Log out", role: .destructive) {
-                vm.logOut()
-            }
-        }
+//        .alert("Confirm log out", isPresented: $showLogOutAlert) {
+//            Button("Cancel", role: .cancel) { }
+//            Button("Log out", role: .destructive) {
+//                vm.logOut()
+//                dismiss()
+//            }
+//        }
     }
 }
 
@@ -77,28 +87,45 @@ extension SettingsView {
                 VStack(alignment: .leading) {
                     Text("Info")
                         .font(.headline)
-                    Text("About, contact, terms of service")
+                    //Text("About, contact, terms of service")
+                    Text("About")
                         .font(.footnote.italic())
                 }
             }
         }
     }
     
-    private var accountSection: some View {
+    private var createTaskSection: some View {
         NavigationLink {
-            EditAccountView()
+            CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated, includeXMark: .constant(false))
         } label: {
             HStack {
-                Image(systemName: "person.crop.circle")
+                Image(systemName: "pencil")
                 VStack(alignment: .leading) {
-                    Text("Account")
+                    Text("Create task")
                         .font(.headline)
-                    Text("Change password & username")
-                        .font(.footnote.italic())
+//                    Text("Create task")
+//                        .font(.footnote.italic())
                 }
             }
         }
     }
+    
+//    private var accountSection: some View {
+//        NavigationLink {
+//            EditAccountView()
+//        } label: {
+//            HStack {
+//                Image(systemName: "person.crop.circle")
+//                VStack(alignment: .leading) {
+//                    Text("Account")
+//                        .font(.headline)
+//                    Text("Change password & username")
+//                        .font(.footnote.italic())
+//                }
+//            }
+//        }
+//    }
         
 //    private var themeSection: some View {
 //        Toggle("Alternative Theme", isOn: $vm.alternativeTheme)

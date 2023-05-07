@@ -15,4 +15,12 @@ extension Double {
     func asNumberString() -> String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.2f", self)
     }
+    
+    func asString(style: DateComponentsFormatter.UnitsStyle) -> String {
+        let formatter = DateComponentsFormatter()
+//        formatter.allowedUnits = [.hour, .minute, .second, .nanosecond]
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = style
+        return formatter.string(from: self) ?? ""
+      }
 }

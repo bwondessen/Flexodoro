@@ -60,14 +60,16 @@ extension InfoView {
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
-                    Image("logo-white")
+                    Image("logoWithText")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 150)
+                        .frame(height: 250)
                     Spacer()
                 }
+                .padding()
+                
                 Text("Flowdoro is a flexible and intuitive pomodoro timer. Regular pomodoros set a rigid time limit that interrupt you durring your flow state, limitting your productivity. Where Flowdoro differs is that it allows you to set two timers: the focus and flow timer. The focus timer is the main timer you expect to get things done. While the flow timer is the additional time added to let you finish up what you are currently on. The concept is to allow you to get the most out of your sessions by allowing you to finish up that chapter, wrap up that assignmet, etc. The sky is the limit!")
-                    .font(.callout)
+                    .font(.body)
                     .fontWeight(.medium)
                     .foregroundColor(Color.blue)
             }

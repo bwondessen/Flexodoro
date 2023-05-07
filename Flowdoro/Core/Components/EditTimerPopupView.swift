@@ -11,7 +11,7 @@ struct EditTimerPopupView: View {
     @EnvironmentObject private var vm: HomeViewModel
     
     @Binding var showEditTimerPopupView: Bool
-    @State private var selectedTime: Double = 5
+    @State private var selectedTime: Double = 300
     @State private var pickerNumber: Double = 5
     
     @State private var buttonOneTapped: Bool = false
@@ -41,13 +41,13 @@ struct EditTimerPopupView: View {
                                     .fill(buttonOneTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
-                                selectedTime = 15
+                                selectedTime = 900
                                 buttonOneTapped = true
                                 buttonTwoTapped = false
                                 buttonThreeTapped = false
                             }
                         Spacer()
-                        Text("30:00")
+                        Text("25:00")
                             .padding()
                             .foregroundColor(buttonTwoTapped ? .white : .primary)
                             .background(
@@ -55,7 +55,7 @@ struct EditTimerPopupView: View {
                                     .fill(buttonTwoTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
-                                selectedTime = 30
+                                selectedTime = 1500
                                 buttonOneTapped = false
                                 buttonTwoTapped = true
                                 buttonThreeTapped = false
@@ -69,7 +69,7 @@ struct EditTimerPopupView: View {
                                     .fill(buttonThreeTapped ? Color.theme.accent : Color.theme.buttonBackground)
                             )
                             .onTapGesture {
-                                selectedTime = 45
+                                selectedTime = 2700
                                 buttonOneTapped = false
                                 buttonTwoTapped = false
                                 buttonThreeTapped = true
@@ -91,13 +91,14 @@ struct EditTimerPopupView: View {
 //                            )
                         VStack {
                             HStack {
-                                Spacer()
-                                Text("\(selectedTime)")
-                                    .font(.subheadline.bold())
+                                //Text(printSecondsToHoursMinutesSeconds(Int(selectedTime)))
+                                Text(selectedTime.asString(style: .full))
+                                    .font(.title)
+                                    .fontWeight(.semibold)
                             }
-                            Slider(value: $selectedTime, in: 1...100)
+                            Slider(value: $selectedTime, in: 300...10800, step: 60)
                                 .onChange(of: selectedTime) { newValue in
-                                    if selectedTime != 15 && selectedTime != 30 && selectedTime != 45 {
+                                    if selectedTime != 900 && selectedTime != 1500 && selectedTime != 2700 {
                                         buttonOneTapped = false
                                         buttonTwoTapped = false
                                         buttonThreeTapped = false
@@ -113,6 +114,7 @@ struct EditTimerPopupView: View {
                             buttonOneTapped = false
                             buttonTwoTapped = false
                             buttonThreeTapped = false
+                            selectedTime = 300
                             showEditTimerPopupView = false
                         } label: {
                             Text("Cancel")
@@ -132,6 +134,7 @@ struct EditTimerPopupView: View {
                             buttonTwoTapped = false
                             buttonThreeTapped = false
                             editTimer()
+                            selectedTime = 300
                             showEditTimerPopupView = false
                         } label: {
                             Text("Confirm")
@@ -145,6 +148,8 @@ struct EditTimerPopupView: View {
                                 )
                         }
                     }
+                    .padding(.bottom)
+                    Spacer()
                 }
                 .padding()
                 .padding(.bottom)
@@ -228,6 +233,20 @@ struct EditTimerPopupView: View {
             }
         }
     }
+    
+    func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
+        return ((seconds * 60) / 3600, ((seconds * 60) % 3600) / 60, (seconds % 3600) % 60)
+//        return (Int(minutes) / 60, (Int(minutes) % 60), (Int(minutes) % 60) * 60)
+        
+//        return (Int(minutes) / 60, (Int(minutes) % 60), Int((minutes.truncatingRemainder(dividingBy: 60) % Int(minutes) % 60)))
+    }
+    
+    func printSecondsToHoursMinutesSeconds(_ seconds: Int) -> String {
+        //let time = seconds * 60
+      let (h, m, s) = secondsToHoursMinutesSeconds(seconds)
+        //return ("\(h) Hours, \(m) Minutes, \(s) Seconds")
+        return ("\(h)hr  \(m)min \(s)sec")
+    }
 }
 
 //struct EditTimeView_Previews: PreviewProvider {
@@ -247,14 +266,16 @@ extension EditTimerPopupView {
     
     func editTimer() {
         if vm.focusSelected {
-            vm.focusTime = selectedTime
-            vm.focusTimeRemaining = selectedTime
+            vm.focusTime = Double(selectedTime)
+            vm.focusTimeRemaining = Double(selectedTime)
         } else if vm.flowSelected {
-            vm.flowTime = selectedTime
-            vm.flowTimeRemaining = selectedTime
+            vm.flowTime = Double(selectedTime)
+            vm.flowTimeRemaining = Double(selectedTime)
         } else if vm.breakSelected {
-            vm.breakTime = selectedTime
-            vm.breakTimeRemaining = selectedTime
+            vm.breakTime = Double(selectedTime)
+            vm.breakTimeRemaining = Double(selectedTime)
         }
+        
+        vm.restartTimer()
     }
 }

@@ -49,37 +49,81 @@ struct SelectTaskView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(tasks) { task in
-                    if task.taskName != nil {
-                        Section {
-                            HStack {
-                                Circle()
-                                    .foregroundColor(Color(task.taskColor ?? "N/A"))
-                                    .frame(width: 15, height: 15)
-                                Text(task.taskName ?? "N/A")
-                                    .bold()
+            if tasks.isEmpty {
+                VStack(alignment: .center) {
+                    Text("There are currently no tasks.")
+                        .font(.callout.italic())
+                        .fontWeight(.semibold)
+                    Text("Click the + button in the top right corner of the timer screen to add a task!")
+                        .font(.callout.italic())
+                        .fontWeight(.semibold)
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                }
+                .padding()
+                .navigationTitle("Tasks")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                        .tint(.black)
+                    }
+                }
+            } else {
+                List {
+                    ForEach(tasks) { task in
+                        if task.taskName != nil {
+                            Section {
+                                HStack {
+                                    Circle()
+                                        .foregroundColor(Color(task.taskColor ?? "N/A"))
+                                        .frame(width: 15, height: 15)
+                                    Text(task.taskName ?? "N/A")
+                                        .bold()
+                                }
+                            }
+                            .onTapGesture {
+                                taskSelected = task
+                                dismiss()
                             }
                         }
-                        .onTapGesture {
-                            taskSelected = task
+                    }
+                    .onDelete(perform: remove)
+                }
+                .navigationTitle("Tasks")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem {
+                        Button {
                             dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
                         }
+                        .tint(.black)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EditButton()
                     }
                 }
             }
-            .navigationTitle("Tasks")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                    .tint(.black)
-                }
-            }
+        }
+    }
+    
+    func remove(at offsets: IndexSet) {
+        for index in offsets {
+            let task = tasks[index]
+            moc.delete(task)
+        }
+        
+        do {
+            try moc.save()
+        } catch {
+            // handle the Core Data error
         }
     }
 }

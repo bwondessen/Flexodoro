@@ -19,7 +19,7 @@ struct TimerStatsView: View {
             Text(value)
                 .font(.headline.bold())
         }
-        .frame(width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.height * 0.05)
+        .frame(width: UIScreen.main.bounds.width * 0.29, height: UIScreen.main.bounds.height * 0.035)
         .padding()
 //        .background {
 //            RoundedRectangle(cornerRadius: 10)

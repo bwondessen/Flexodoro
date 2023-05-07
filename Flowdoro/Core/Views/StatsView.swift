@@ -110,20 +110,25 @@ struct StatsView: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(.white)
                                     .shadow(radius: 2.5)
+                                    .padding(.horizontal)
                             }
                             .padding(.bottom)
+
                         TimerChart()
+                            .padding()
                             .padding()
                             .background {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(.white)
                                     .shadow(radius: 2.5)
+                                    .padding(.horizontal)
                             }
                     }
-                    .padding()
+                    //.padding()
                     
                     //TabBarShadow()
                 }
+                .padding()
             }
             .navigationTitle("Stats")
             .toolbar {
@@ -146,6 +151,7 @@ struct StatsView: View {
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
         StatsView()
+            //.previewDevice("iphone 11")
     }
 }
 
@@ -153,9 +159,9 @@ extension StatsView {
     private var statsSection: some View {
         VStack {
             HStack {
-                TimerStatsView(title: "Todays Study", value: "\(timeStudiedToday)")
+                TimerStatsView(title: "Todays Study", value: "\(timeStudiedToday.asString(style: .short))")
                 Spacer()
-                TimerStatsView(title: "Total Study", value: "\(totalTimeStudied)")
+                TimerStatsView(title: "Total Study", value: "\(totalTimeStudied.asString(style: .short))")
             }
             .padding(.horizontal)
             
@@ -167,12 +173,13 @@ extension StatsView {
             .padding(.horizontal)
             
             HStack {
-                TimerStatsView(title: "Todays Break", value: "\(breakTimeToday)")
+                TimerStatsView(title: "Todays Break", value: "\(breakTimeToday.asString(style: .short))")
                 Spacer()
-                TimerStatsView(title: "Total Break", value: "\(totalBreakTime)")
+                TimerStatsView(title: "Total Break", value: "\(totalBreakTime.asString(style: .short))")
             }
             .padding(.horizontal)
         }
+        .padding(.bottom)
     }
 }
 
