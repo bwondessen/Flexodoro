@@ -18,6 +18,8 @@ struct SettingsView: View {
     
     @State private var showLogOutAlert: Bool = false
     
+    @State private var includeXMark: Bool = false
+    
     @AppStorage("faceIDEnabled") private var faceIDEnabled: Bool = false
     @AppStorage("passcodeRequired") var passcodeRequired: Bool = false
     
@@ -97,7 +99,7 @@ extension SettingsView {
     
     private var createTaskSection: some View {
         NavigationLink {
-            CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated, includeXMark: .constant(false))
+            CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated, includeXMark: $includeXMark)
         } label: {
             HStack {
                 Image(systemName: "pencil")

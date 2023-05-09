@@ -84,7 +84,10 @@ struct SelectTaskView: View {
                                         .frame(width: 15, height: 15)
                                     Text(task.taskName ?? "N/A")
                                         .bold()
+                                    Spacer()
                                 }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(.white.opacity(0.000001))
                             }
                             .onTapGesture {
                                 taskSelected = task

@@ -38,8 +38,17 @@ struct TaskChart: View {
             Text("Top Tasks")
             .font(.system(size: 28))
             .fontWeight(.medium)
-        HorizontalBarChartView(dataPoints: taskPoints())
-                .padding()
+            
+            if stats.isEmpty {
+                HorizontalBarChartView(dataPoints: [DataPoint(value: 0, label: "jklkjlkjlk", legend: Legend(color: Color.white, label: ""))])
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .fill(.red)
+//                    )
+            } else {
+                HorizontalBarChartView(dataPoints: taskPoints())
+                    .padding()
+            }
         }
     }
 }

@@ -20,14 +20,16 @@ struct EditTimerPopupView: View {
     @State private var customButtonTapped: Bool = false
     
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.clear.ignoresSafeArea()
+//        ZStack(alignment: .top) {
+//            Color.clear.ignoresSafeArea()
             
             if showEditTimerPopupView {
                 VStack(spacing: 5) {
+                    Spacer()
                     Text("Select a duration")
                         .font(.title3)
                         .fontWeight(.semibold)
+                        .padding(.top)
                     
                     Spacer()
                     
@@ -97,6 +99,7 @@ struct EditTimerPopupView: View {
                                     .fontWeight(.semibold)
                             }
                             Slider(value: $selectedTime, in: 300...10800, step: 60)
+                                .padding()
                                 .onChange(of: selectedTime) { newValue in
                                     if selectedTime != 900 && selectedTime != 1500 && selectedTime != 2700 {
                                         buttonOneTapped = false
@@ -149,11 +152,11 @@ struct EditTimerPopupView: View {
                         }
                     }
                     .padding(.bottom)
-                    Spacer()
+                    //Spacer()
                 }
-                .padding()
-                .padding(.bottom)
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.30)
+//                .padding()
+//                .padding(.bottom)
+//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.30)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
@@ -231,7 +234,7 @@ struct EditTimerPopupView: View {
                 //                )
                 //.animation(.default)
             }
-        }
+        //}
     }
     
     func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {

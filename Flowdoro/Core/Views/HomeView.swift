@@ -219,10 +219,18 @@ struct HomeView: View {
                 //                EditTimeView(timeSelected: $timeSelected)
                 //            )
                 
-                withAnimation {
-                    EditTimerPopupView(showEditTimerPopupView: $showEditTimerPopupView)
-                }
+//                withAnimation {
+//                    EditTimerPopupView(showEditTimerPopupView: $showEditTimerPopupView)
+//                }
             }
+            .overlay(
+                    //EditTimerPopupView(showEditTimerPopupView: $showEditTimerPopupView)
+                VStack {
+                    EditTimerPopupView(showEditTimerPopupView: $showEditTimerPopupView)
+                        //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.30)
+                    //Spacer()
+                }
+            )
             .onChange(of: vm.focusTimeRemaining) { _ in
                 if vm.focusTimeRemaining == 0 {
                     vm.inFlow = true

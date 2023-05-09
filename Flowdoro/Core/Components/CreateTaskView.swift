@@ -111,19 +111,29 @@ struct CreateTaskView: View {
                         }
                     }
                     .listRowBackground(opacity(0))
-                }
-                .navigationBarTitle("Create Task")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
+                    .toolbar {
+                        ToolbarItem {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark")
+                            }
+                            .tint(.black)
                         }
-                        .tint(.black)
                     }
                 }
+                .navigationTitle("Create Task")
+                .navigationBarTitleDisplayMode(.inline)
+    //            .toolbar {
+    //                ToolbarItem {
+    //                    Button {
+    //                        dismiss()
+    //                    } label: {
+    //                        Image(systemName: "xmark")
+    //                    }
+    //                    .tint(.black)
+    //                }
+    //            }
                 .onAppear {
                     taskName = ""
                     taskColor = nil
@@ -187,8 +197,18 @@ struct CreateTaskView: View {
                     }
                     .listRowBackground(opacity(0))
                 }
-                .navigationBarTitle("Create Task")
+                .navigationTitle("Create Task")
                 .navigationBarTitleDisplayMode(.inline)
+    //            .toolbar {
+    //                ToolbarItem {
+    //                    Button {
+    //                        dismiss()
+    //                    } label: {
+    //                        Image(systemName: "xmark")
+    //                    }
+    //                    .tint(.black)
+    //                }
+    //            }
                 .onAppear {
                     taskName = ""
                     taskColor = nil
@@ -198,8 +218,8 @@ struct CreateTaskView: View {
     }
 }
 
-struct AddTaskView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateTaskView(taskName: .constant(""), taskColor: .constant(Color.blue), taskCreated: .constant(false), includeXMark: .constant(true))
-    }
-}
+//struct AddTaskView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateTaskView(taskName: .constant(""), taskColor: .constant(Color.blue), taskCreated: .constant(false), includeXMark: .constant(true))
+//    }
+//}

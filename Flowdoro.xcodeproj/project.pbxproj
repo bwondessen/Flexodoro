@@ -228,9 +228,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		363C6B0429074D1A0037E19F /* Flexodoro */ = {
+		363C6B0429074D1A0037E19F /* Flowdoro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 363C6B1329074D1E0037E19F /* Build configuration list for PBXNativeTarget "Flexodoro" */;
+			buildConfigurationList = 363C6B1329074D1E0037E19F /* Build configuration list for PBXNativeTarget "Flowdoro" */;
 			buildPhases = (
 				363C6B0129074D1A0037E19F /* Sources */,
 				363C6B0229074D1A0037E19F /* Frameworks */,
@@ -240,7 +240,7 @@
 			);
 			dependencies = (
 			);
-			name = Flexodoro;
+			name = Flowdoro;
 			packageProductDependencies = (
 				3667849029FB38BC0070D587 /* SwiftUICharts */,
 				3667849529FC58C90070D587 /* SwiftUICharts */,
@@ -266,7 +266,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 363C6B0029074D1A0037E19F /* Build configuration list for PBXProject "Flexodoro" */;
+			buildConfigurationList = 363C6B0029074D1A0037E19F /* Build configuration list for PBXProject "Flowdoro" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -284,7 +284,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				363C6B0429074D1A0037E19F /* Flexodoro */,
+				363C6B0429074D1A0037E19F /* Flowdoro */,
 			);
 		};
 /* End PBXProject section */
@@ -519,7 +519,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		363C6B0029074D1A0037E19F /* Build configuration list for PBXProject "Flexodoro" */ = {
+		363C6B0029074D1A0037E19F /* Build configuration list for PBXProject "Flowdoro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				363C6B1129074D1E0037E19F /* Debug */,
@@ -528,7 +528,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		363C6B1329074D1E0037E19F /* Build configuration list for PBXNativeTarget "Flexodoro" */ = {
+		363C6B1329074D1E0037E19F /* Build configuration list for PBXNativeTarget "Flowdoro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				363C6B1429074D1E0037E19F /* Debug */,
