@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		363983942A0C4BDE00C3D782 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363983932A0C4BDE00C3D782 /* NotificationService.swift */; };
+		363983982A0C4BDE00C3D782 /* Flowdoro-notification.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 363983912A0C4BDE00C3D782 /* Flowdoro-notification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		363C6B0929074D1A0037E19F /* Flowdoro App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B0829074D1A0037E19F /* Flowdoro App.swift */; };
 		363C6B0B29074D1A0037E19F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C6B0A29074D1A0037E19F /* HomeView.swift */; };
 		363C6B0D29074D1E0037E19F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 363C6B0C29074D1E0037E19F /* Assets.xcassets */; };
@@ -19,6 +21,7 @@
 		3667849129FB38BC0070D587 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3667849029FB38BC0070D587 /* SwiftUICharts */; };
 		3667849329FBA9B20070D587 /* TimerChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3667849229FBA9B20070D587 /* TimerChart.swift */; };
 		3667849629FC58C90070D587 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3667849529FC58C90070D587 /* SwiftUICharts */; };
+		366D37E32A11C31E009EAA36 /* notification0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 366D37E22A11C31E009EAA36 /* notification0.mp3 */; };
 		3671246B2A00936D0044ADC4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3671246A2A00936D0044ADC4 /* FirebaseAuth */; };
 		3671246D2A00936D0044ADC4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3671246C2A00936D0044ADC4 /* FirebaseFirestore */; };
 		3671246F2A0094220044ADC4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3671246E2A0094220044ADC4 /* GoogleService-Info.plist */; };
@@ -43,7 +46,34 @@
 		36BC071229FDEA4500983DC8 /* TimerStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC071129FDEA4500983DC8 /* TimerStatsView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		363983962A0C4BDE00C3D782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 363C6AFD29074D1A0037E19F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 363983902A0C4BDE00C3D782;
+			remoteInfo = "Flowdoro-notification";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		363983992A0C4BDE00C3D782 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				363983982A0C4BDE00C3D782 /* Flowdoro-notification.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		363983912A0C4BDE00C3D782 /* Flowdoro-notification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Flowdoro-notification.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		363983932A0C4BDE00C3D782 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		363983952A0C4BDE00C3D782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		363C6B0529074D1A0037E19F /* Flowdoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flowdoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		363C6B0829074D1A0037E19F /* Flowdoro App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flowdoro App.swift"; sourceTree = "<group>"; };
 		363C6B0A29074D1A0037E19F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -55,6 +85,7 @@
 		363C6B232908A09B0037E19F /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		363C6B252908B7A10037E19F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3667849229FBA9B20070D587 /* TimerChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerChart.swift; sourceTree = "<group>"; };
+		366D37E22A11C31E009EAA36 /* notification0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = notification0.mp3; sourceTree = "<group>"; };
 		3671246E2A0094220044ADC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		367124702A00956B0044ADC4 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		367124722A0095AE0044ADC4 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -78,6 +109,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3639838E2A0C4BDE00C3D782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		363C6B0229074D1A0037E19F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,10 +130,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		363983922A0C4BDE00C3D782 /* Flowdoro-notification */ = {
+			isa = PBXGroup;
+			children = (
+				363983932A0C4BDE00C3D782 /* NotificationService.swift */,
+				363983952A0C4BDE00C3D782 /* Info.plist */,
+			);
+			path = "Flowdoro-notification";
+			sourceTree = "<group>";
+		};
 		363C6AFC29074D1A0037E19F = {
 			isa = PBXGroup;
 			children = (
 				363C6B0729074D1A0037E19F /* Flowdoro */,
+				363983922A0C4BDE00C3D782 /* Flowdoro-notification */,
+				366D37E12A11C2E2009EAA36 /* Sounds */,
 				363C6B0629074D1A0037E19F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				363C6B0529074D1A0037E19F /* Flowdoro.app */,
+				363983912A0C4BDE00C3D782 /* Flowdoro-notification.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +247,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		366D37E12A11C2E2009EAA36 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				366D37E22A11C31E009EAA36 /* notification0.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		367124782A01AC840044ADC4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +286,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		363983902A0C4BDE00C3D782 /* Flowdoro-notification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3639839C2A0C4BDE00C3D782 /* Build configuration list for PBXNativeTarget "Flowdoro-notification" */;
+			buildPhases = (
+				3639838D2A0C4BDE00C3D782 /* Sources */,
+				3639838E2A0C4BDE00C3D782 /* Frameworks */,
+				3639838F2A0C4BDE00C3D782 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Flowdoro-notification";
+			productName = "Flowdoro-notification";
+			productReference = 363983912A0C4BDE00C3D782 /* Flowdoro-notification.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		363C6B0429074D1A0037E19F /* Flowdoro */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 363C6B1329074D1E0037E19F /* Build configuration list for PBXNativeTarget "Flowdoro" */;
@@ -235,10 +310,12 @@
 				363C6B0129074D1A0037E19F /* Sources */,
 				363C6B0229074D1A0037E19F /* Frameworks */,
 				363C6B0329074D1A0037E19F /* Resources */,
+				363983992A0C4BDE00C3D782 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				363983972A0C4BDE00C3D782 /* PBXTargetDependency */,
 			);
 			name = Flowdoro;
 			packageProductDependencies = (
@@ -258,9 +335,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					363983902A0C4BDE00C3D782 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					363C6B0429074D1A0037E19F = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -285,17 +365,26 @@
 			projectRoot = "";
 			targets = (
 				363C6B0429074D1A0037E19F /* Flowdoro */,
+				363983902A0C4BDE00C3D782 /* Flowdoro-notification */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3639838F2A0C4BDE00C3D782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		363C6B0329074D1A0037E19F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				363C6B1029074D1E0037E19F /* Preview Assets.xcassets in Resources */,
 				3671246F2A0094220044ADC4 /* GoogleService-Info.plist in Resources */,
+				366D37E32A11C31E009EAA36 /* notification0.mp3 in Resources */,
 				363C6B0D29074D1E0037E19F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +392,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3639838D2A0C4BDE00C3D782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				363983942A0C4BDE00C3D782 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		363C6B0129074D1A0037E19F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,7 +436,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		363983972A0C4BDE00C3D782 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 363983902A0C4BDE00C3D782 /* Flowdoro-notification */;
+			targetProxy = 363983962A0C4BDE00C3D782 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3639839A2A0C4BDE00C3D782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PMP3AMXY6R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Flowdoro-notification/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flowdoro-notification";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brukewondessen.-Flowdoro.Flowdoro-notification";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3639839B2A0C4BDE00C3D782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PMP3AMXY6R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Flowdoro-notification/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Flowdoro-notification";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brukewondessen.-Flowdoro.Flowdoro-notification";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		363C6B1129074D1E0037E19F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -457,6 +616,7 @@
 		363C6B1429074D1E0037E19F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -469,8 +629,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -488,6 +647,7 @@
 		363C6B1529074D1E0037E19F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -500,8 +660,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -519,6 +678,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3639839C2A0C4BDE00C3D782 /* Build configuration list for PBXNativeTarget "Flowdoro-notification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3639839A2A0C4BDE00C3D782 /* Debug */,
+				3639839B2A0C4BDE00C3D782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		363C6B0029074D1A0037E19F /* Build configuration list for PBXProject "Flowdoro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

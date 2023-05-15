@@ -11,7 +11,7 @@ struct EditTimerPopupView: View {
     @EnvironmentObject private var vm: HomeViewModel
     
     @Binding var showEditTimerPopupView: Bool
-    @State private var selectedTime: Double = 300
+    @State private var selectedTime: Double = 5
     @State private var pickerNumber: Double = 5
     
     @State private var buttonOneTapped: Bool = false
@@ -98,7 +98,7 @@ struct EditTimerPopupView: View {
                                     .font(.title)
                                     .fontWeight(.semibold)
                             }
-                            Slider(value: $selectedTime, in: 300...10800, step: 60)
+                            Slider(value: $selectedTime, in: 5...10800, step: 60)
                                 .padding()
                                 .onChange(of: selectedTime) { newValue in
                                     if selectedTime != 900 && selectedTime != 1500 && selectedTime != 2700 {

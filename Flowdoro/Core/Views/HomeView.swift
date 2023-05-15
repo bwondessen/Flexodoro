@@ -254,7 +254,13 @@ struct HomeView: View {
                                 .font(.body.bold())
                         }
                         .sheet(isPresented: $showCreateTaskSheet) {
-                            CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated, includeXMark: $includeXMark)
+                            if #available(iOS 16.0, *) {
+                                CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated, includeXMark: $includeXMark)
+                                    .presentationDetents([.medium])
+                            } else {
+                                // Fallback on earlier versions
+                                CreateTaskView(taskName: $taskName, taskColor: $taskColor, taskCreated: $taskCreated, includeXMark: $includeXMark)
+                            }
                         }
                     }
                 }
@@ -477,10 +483,10 @@ extension HomeView {
         
         let addRequest = {
             let content = UNMutableNotificationContent()
-            content.title = "title"
-            content.subtitle = "subtitle"
-            content.body = "body"
-            content.sound = UNNotificationSound.default
+            content.title = "Flowdoro"
+            //content.subtitle = "subtitle"
+            content.body = "Timer finished!"
+            content.sound = !vm.inFlow ? UNNotificationSound.default : UNNotificationSound(named: UNNotificationSoundName(rawValue: "notification0.mp3"))
             
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (vm.inFocus ? vm.focusTimeRemaining : (vm.inFlow ? vm.flowTimeRemaining - 0.05 : vm.breakTimeRemaining)), repeats: false)
             

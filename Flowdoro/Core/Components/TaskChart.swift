@@ -35,15 +35,23 @@ struct TaskChart: View {
     
     var body: some View {
         VStack {
-            Text("Top Tasks")
-            .font(.system(size: 28))
-            .fontWeight(.medium)
+            //if !tasks.isEmpty {
+                Text("Top Tasks")
+                    .font(.system(size: 28))
+                    .fontWeight(.medium)
+            //}
             
-            if stats.isEmpty {
-                HorizontalBarChartView(dataPoints: [DataPoint(value: 0, label: "jklkjlkjlk", legend: Legend(color: Color.white, label: ""))])
+            if tasks.isEmpty {
+//                HorizontalBarChartView(dataPoints: [DataPoint(value: 0, label: "", legend: Legend(color: Color.white, label: ""))])
 //                    .overlay(
 //                        RoundedRectangle(cornerRadius: 10)
 //                            .fill(.red)
+                HStack {
+                    Spacer()
+                    Text("No data to display")
+                        .font(.subheadline)
+                    Spacer()
+                }
 //                    )
             } else {
                 HorizontalBarChartView(dataPoints: taskPoints())

@@ -167,13 +167,22 @@ struct TimerChart: View {
 //                    BarView(value: timeStudiedThisWeek[5], week: "Fri")
 //                    BarView(value: timeStudiedThisWeek[6], week: "Sat")
                     
-                    BarView(value: sundayValue(), week: "Sun")
-                    BarView(value: mondayValue(), week: "Mon")
-                    BarView(value: tuesdayValue(), week: "Tue")
-                    BarView(value: wednesdayValue(), week: "Wed")
-                    BarView(value: thursdayValue(), week: "Thur")
-                    BarView(value: fridayValue(), week: "Fr")
-                    BarView(value: saturdayValue(), week: "Sat")
+                    if totalStudyThisWeek > 0 {
+                        BarView(value: sundayValue(), week: "Sun")
+                        BarView(value: mondayValue(), week: "Mon")
+                        BarView(value: tuesdayValue(), week: "Tue")
+                        BarView(value: wednesdayValue(), week: "Wed")
+                        BarView(value: thursdayValue(), week: "Thur")
+                        BarView(value: fridayValue(), week: "Fri")
+                        BarView(value: saturdayValue(), week: "Sat")
+                    } else {
+                        HStack {
+                            Spacer()
+                            Text("No data to display")
+                                .font(.subheadline)
+                            Spacer()
+                        }
+                    }
                 }.padding(.top, 24)
                     //.animation(.default)
             }
