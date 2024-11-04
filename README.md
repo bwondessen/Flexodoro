@@ -5,7 +5,7 @@ A flexible pomodoro app with two timers, focused on enhancing productivity by pr
   <img src="https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white" />
 </a>
 
-![FlowdoroREADMEPics](https://github.com/user-attachments/assets/78778458-f0a0-4a5e-9a21-40cca3d4f582)
+![FlowdoroREADMEPics](https://github.com/user-attachments/assets/add8c8d2-1ba4-4aa6-b3b0-82b132119e6f)
 
 ## Overview
 This app holds a special place in my heart as it solves a personal problem: the inflexibility of pomodoro timers. The problem with traditional pomodoros is that it stops you abruptly in the middle of your work, interrupting your focus and flow state. 
