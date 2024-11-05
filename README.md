@@ -21,6 +21,7 @@ You can tap the plus icon in the top right corner of the pomodoro tab to create 
 * Animations
 
 ## Technologies
+* SwiftUI
 * Core Data
 * Combine
 * MVVM architecture
