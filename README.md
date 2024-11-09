@@ -1,9 +1,7 @@
-# Flowdoro
-A flexible pomodoro app with two timers, focused on enhancing productivity by preserving the flow state of users!
-
-<a href="https://apps.apple.com/us/app/flowdoro/id6448894437">
+<h1>Flowdoro <a href="https://apps.apple.com/us/app/flowdoro/id6448894437">
   <img src="https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white" />
-</a>
+</a></h1>
+A flexible pomodoro app with two timers, focused on enhancing productivity by preserving the flow state of users!
 
 ![FlowdoroREADMEPics](https://github.com/user-attachments/assets/add8c8d2-1ba4-4aa6-b3b0-82b132119e6f)
 
